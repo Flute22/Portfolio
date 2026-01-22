@@ -8,7 +8,7 @@ export const HERO_DATA = {
   tagline: "Transforming Foundational Knowledge into Data-Driven Solutions",
   description: "A BCA graduate specialized in core computing, currently mastering Data Science at Analytics Labs. I build intelligent systems—like my Personal AI Buddy—that combine technical rigor with an analytical mindset rooted in Economics.",
   // Professional placeholder image
-  avatarUrl: './profile.jpg' 
+  avatarUrl: 'profile.jpg' 
 };
 
 export const SOCIAL_LINKS = [
