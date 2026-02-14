@@ -11,7 +11,7 @@ export const HERO_DATA = {
   avatarUrl: 'profile.jpg'
 };
 
-export const RESUME_DEFAULT_URL = '/resume.pdf';
+export const RESUME_DEFAULT_URL = '/Resume.pdf';
 export const RESUME_STORAGE_KEY = 'portfolio_resume_data';
 
 export const SOCIAL_LINKS = [
