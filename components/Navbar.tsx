@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, Terminal } from 'lucide-react';
 
 interface NavbarProps {
   onOpenContact: () => void;
+  onOpenResumeManager?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenResumeManager }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const clickCountRef = useRef(0);
+  const clickTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +19,20 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    clickCountRef.current += 1;
+    if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
+    if (clickCountRef.current >= 3) {
+      e.preventDefault();
+      clickCountRef.current = 0;
+      onOpenResumeManager?.();
+      return;
+    }
+    clickTimerRef.current = setTimeout(() => {
+      clickCountRef.current = 0;
+    }, 600);
+  };
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -39,7 +56,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
         top: offsetPosition,
         behavior: 'smooth'
       });
-      
+
       // Update URL hash without jump
       window.history.pushState(null, '', href);
     }
@@ -55,16 +72,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   ];
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'py-4 bg-background/80 backdrop-blur-md border-b border-white/5' : 'py-6 bg-transparent'
-      }`}
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-4 bg-background/80 backdrop-blur-md border-b border-white/5' : 'py-6 bg-transparent'
+        }`}
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <a 
-          href="#" 
-          onClick={(e) => scrollToSection(e, '#')}
+        <a
+          href="#"
+          onClick={(e) => { handleLogoClick(e); scrollToSection(e, '#'); }}
           className="flex items-center gap-2 group"
         >
           <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 group-hover:border-primary/50 transition-colors">
@@ -76,8 +92,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a 
-              key={link.name} 
+            <a
+              key={link.name}
               href={link.href}
               onClick={(e) => scrollToSection(e, link.href)}
               className="text-sm font-medium text-muted hover:text-white transition-colors relative group"
@@ -86,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
-          <button 
+          <button
             onClick={onOpenContact}
             className="px-4 py-2 text-sm font-medium bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-all cursor-pointer"
           >
@@ -95,7 +111,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button 
+        <button
           className="md:hidden p-2 text-muted hover:text-white"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
@@ -107,8 +123,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-surface border-b border-white/10 p-6 flex flex-col gap-4 shadow-2xl">
           {navLinks.map((link) => (
-            <a 
-              key={link.name} 
+            <a
+              key={link.name}
               href={link.href}
               className="text-lg font-medium text-muted hover:text-white"
               onClick={(e) => scrollToSection(e, link.href)}

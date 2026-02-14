@@ -8,24 +8,27 @@ export const HERO_DATA = {
   tagline: "Transforming Foundational Knowledge into Data-Driven Solutions",
   description: "A BCA graduate specialized in core computing, currently mastering Data Science at Analytics Labs. I build intelligent systems—like my Personal AI Buddy—that combine technical rigor with an analytical mindset rooted in Economics.",
   // Professional placeholder image
-  avatarUrl: 'profile.jpg' 
+  avatarUrl: 'profile.jpg'
 };
 
+export const RESUME_DEFAULT_URL = '/resume.pdf';
+export const RESUME_STORAGE_KEY = 'portfolio_resume_data';
+
 export const SOCIAL_LINKS = [
-  { 
-    label: "GitHub", 
-    href: "https://github.com/Flute22", 
-    icon: <Github className="w-6 h-6" /> 
+  {
+    label: "GitHub",
+    href: "https://github.com/Flute22",
+    icon: <Github className="w-6 h-6" />
   },
-  { 
-    label: "Instagram", 
-    href: "https://www.instagram.com/nextgenkhushal", 
-    icon: <Instagram className="w-6 h-6" /> 
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/nextgenkhushal",
+    icon: <Instagram className="w-6 h-6" />
   },
-  { 
-    label: "LinkedIn", 
-    href: "https://www.linkedin.com/in/khushal-sinhmar", 
-    icon: <Linkedin className="w-6 h-6" /> 
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/khushal-sinhmar",
+    icon: <Linkedin className="w-6 h-6" />
   }
 ];
 
