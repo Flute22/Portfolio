@@ -1,12 +1,9 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Download } from 'lucide-react';
 import { HERO_DATA } from '../constants';
+import { getResumeUrl, getResumeFileName } from './ResumeManager';
 
-interface HeroProps {
-  onOpenContact?: () => void;
-}
-
-export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
+export const Hero: React.FC = () => {
   return (
     <section className="min-h-screen flex items-center justify-center relative pt-28 md:pt-24 overflow-hidden">
 
@@ -58,12 +55,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
               <ArrowRight className="w-4 h-4" />
             </a>
 
-            <button
-              onClick={onOpenContact}
-              className="px-8 py-3.5 bg-transparent border border-white/10 text-white font-medium rounded-lg hover:bg-white/5 transition-colors flex items-center gap-2 cursor-pointer"
+            <a
+              href={getResumeUrl()}
+              download={getResumeFileName()}
+              className="px-8 py-3.5 bg-transparent border border-white/10 text-white font-medium rounded-lg hover:bg-white/5 transition-colors flex items-center gap-2"
             >
-              Contact Me
-            </button>
+              <Download className="w-4 h-4" />
+              Resume
+            </a>
           </div>
         </div>
 

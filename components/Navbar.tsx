@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, Terminal, Download } from 'lucide-react';
-import { getResumeUrl, getResumeFileName } from './ResumeManager';
+import { Menu, X, Terminal } from 'lucide-react';
 
 interface NavbarProps {
   onOpenContact: () => void;
@@ -103,14 +102,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenResumeManag
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
-          <a
-            href={getResumeUrl()}
-            download={getResumeFileName()}
-            className="px-4 py-2 text-sm font-medium bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-all flex items-center gap-1.5"
+          <button
+            onClick={onOpenContact}
+            className="px-4 py-2 text-sm font-medium bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-all cursor-pointer"
           >
-            <Download className="w-3.5 h-3.5" />
-            Resume
-          </a>
+            Get in Touch
+          </button>
         </div>
 
         {/* Mobile Menu Button */}

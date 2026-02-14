@@ -27,7 +27,7 @@ function App() {
       <Navbar onOpenContact={handleOpenContact} onOpenResumeManager={handleOpenResumeManager} />
 
       <main>
-        <Hero onOpenContact={handleOpenContact} />
+        <Hero />
         <About />
         <Skills />
         <Projects />
