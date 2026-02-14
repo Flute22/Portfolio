@@ -1,7 +1,6 @@
 import React from 'react';
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { HERO_DATA } from '../constants';
-import { getResumeUrl, getResumeFileName } from './ResumeManager';
 
 interface HeroProps {
   onOpenContact?: () => void;
@@ -58,14 +57,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
               View Work
               <ArrowRight className="w-4 h-4" />
             </a>
-            <a
-              href={getResumeUrl()}
-              download={getResumeFileName()}
-              className="px-8 py-3.5 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 text-white font-medium rounded-lg hover:from-primary/30 hover:to-secondary/30 hover:border-primary/50 transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(56,189,248,0.1)] hover:shadow-[0_0_25px_rgba(56,189,248,0.2)]"
-            >
-              <Download className="w-4 h-4" />
-              Download Resume
-            </a>
+
             <button
               onClick={onOpenContact}
               className="px-8 py-3.5 bg-transparent border border-white/10 text-white font-medium rounded-lg hover:bg-white/5 transition-colors flex items-center gap-2 cursor-pointer"
