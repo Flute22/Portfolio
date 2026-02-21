@@ -77,15 +77,14 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     company: "AnalytixLabs",
     period: "Oct 2025 – Oct 2026",
     description: "Specialized training in Data Visualization with Excel, SQL, Power BI, and Python. Building end-to-end analytical solutions from ETL to dashboard delivery. Upcoming modules in Machine Learning and Generative AI.",
-    skills: ["Power BI", "SQL", "Python", "Excel"]
+    skills: ["Power BI", "SQL", "Python", "Excel", "Statistics", "Mathematics", "Machine learning", "Generative AI", "MLOps (Machine Learning Operations)"]
   },
   {
     id: "exp-bca",
     role: "Bachelor of Computer Applications (BCA)",
-    company: "Chaudhary Devi Lal University",
     period: "2022 – 2025",
     description: "Built a strong technical foundation in software engineering, database management systems, and algorithm design with a focus on data-centric computing and analytical problem-solving.",
-    skills: ["DBMS", "Data Structures", "Algorithms", "System Design"]
+    skills: ["DBMS", "Data Structures", "Algorithms", "System Design", "Web development"]
   },
   {
     id: "exp-achievements",
