@@ -3,7 +3,7 @@ import React from 'react';
 export interface Project {
   id: string;
   title: string;
-  category: 'ML' | 'Analytics' | 'Engineering';
+  category: 'ML' | 'Analytics' | 'Engineering' | 'BI' | 'Excel';
   description: string;
   metrics: { label: string; value: string }[];
   tags: string[];

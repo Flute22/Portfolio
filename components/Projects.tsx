@@ -17,7 +17,7 @@ export const Projects: React.FC = () => {
           {PROJECTS_DATA.map((project) => (
             <TiltCard key={project.id} className="h-full" intensity={15}>
               <div className="h-full bg-surfaceHighlight/30 border border-white/5 rounded-2xl p-6 backdrop-blur-sm flex flex-col group transition-all duration-300 relative overflow-hidden hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 hover:animate-[borderGlowPulse_2s_ease-in-out_infinite]">
-                
+
                 {/* Header */}
                 <div className="flex justify-between items-start mb-4 relative z-10">
                   <div className="flex-1">
@@ -47,16 +47,16 @@ export const Projects: React.FC = () => {
 
                 {/* Chart */}
                 <div className="mt-auto mb-6 relative z-10">
-                   <div className="flex items-center gap-2 text-[10px] font-mono text-muted/80 mb-2 uppercase tracking-wider">
-                      <TrendingUp className="w-3 h-3" />
-                      <span>Performance Trend</span>
-                   </div>
-                   <ChartPreview data={project.chartData} color={project.category === 'ML' ? '#38bdf8' : project.category === 'Analytics' ? '#2dd4bf' : '#818cf8'} />
+                  <div className="flex items-center gap-2 text-[10px] font-mono text-muted/80 mb-2 uppercase tracking-wider">
+                    <TrendingUp className="w-3 h-3" />
+                    <span>Performance Trend</span>
+                  </div>
+                  <ChartPreview data={project.chartData} color={project.category === 'ML' ? '#38bdf8' : project.category === 'Analytics' ? '#2dd4bf' : project.category === 'BI' ? '#f59e0b' : '#818cf8'} />
                 </div>
 
                 {/* Tags & Link Container */}
                 <div className="pt-5 border-t border-white/5 flex flex-col gap-4 relative z-10">
-                  
+
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
@@ -68,9 +68,9 @@ export const Projects: React.FC = () => {
 
                   {/* Enhanced Link Button */}
                   {project.link && (
-                    <a 
-                      href={project.link} 
-                      target="_blank" 
+                    <a
+                      href={project.link}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="mt-2 flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/5 hover:bg-primary hover:border-primary hover:text-surface transition-all duration-300 group/btn"
                     >
@@ -86,15 +86,15 @@ export const Projects: React.FC = () => {
         </div>
 
         {PROJECTS_DATA.length > 3 && (
-            <div className="mt-12 md:mt-16 flex justify-center animate-fade-in">
-              <a 
-                href="#" 
-                className="group inline-flex items-center gap-2 px-6 py-3 bg-surfaceHighlight/30 border border-white/10 rounded-full text-sm font-medium hover:bg-surfaceHighlight/80 hover:border-primary/30 hover:text-white transition-all duration-300 backdrop-blur-sm"
-              >
-                View All Projects
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 text-primary" />
-              </a>
-            </div>
+          <div className="mt-12 md:mt-16 flex justify-center animate-fade-in">
+            <a
+              href="#"
+              className="group inline-flex items-center gap-2 px-6 py-3 bg-surfaceHighlight/30 border border-white/10 rounded-full text-sm font-medium hover:bg-surfaceHighlight/80 hover:border-primary/30 hover:text-white transition-all duration-300 backdrop-blur-sm"
+            >
+              View All Projects
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 text-primary" />
+            </a>
+          </div>
         )}
       </div>
     </section>

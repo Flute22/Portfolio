@@ -1,13 +1,12 @@
 import React from 'react';
-import { Database, Brain, BarChart3, Code2, LineChart, FileSpreadsheet, Mic2, Cpu, Braces, Presentation, Landmark, Bot, Github, Linkedin, Instagram } from 'lucide-react';
+import { Database, Brain, BarChart3, LineChart, Github, Linkedin, Instagram } from 'lucide-react';
 import { Project, ExperienceItem, SkillGroup, CaseStudy } from './types';
 
 export const HERO_DATA = {
   name: "Khushal Sinhmar",
-  role: "Data Science Aspirant",
-  tagline: "Transforming Foundational Knowledge into Data-Driven Solutions",
-  description: "A BCA graduate specialized in core computing, currently mastering Data Science at Analytics Labs. I build intelligent systems—like my Personal AI Buddy—that combine technical rigor with an analytical mindset rooted in Economics.",
-  // Professional placeholder image
+  role: "Data Analyst",
+  tagline: "Turning Complex Data into Actionable Business Intelligence",
+  description: "Data-driven professional with a strong foundation in Data Science and Business Intelligence. Proficient in transforming complex, raw datasets into actionable insights using SQL, Power BI, Excel, and Python — from rigorous ETL processing to high-impact visualization.",
   avatarUrl: 'profile.jpg'
 };
 
@@ -34,151 +33,121 @@ export const SOCIAL_LINKS = [
 
 export const SKILLS_DATA: SkillGroup[] = [
   {
-    category: "Foundation & Scripting",
+    category: "Data Visualization",
     items: [
-      { name: "Python (Pandas, NumPy, Scikit-Learn)", description: "The backbone of modern data science for manipulation and modeling." },
-      { name: "SQL (Relational Databases, Schema Design)", description: "Architecting efficient queries and robust database structures." },
-      { name: "C++ & Java (BCA Academic Core)", description: "Deep understanding of memory management and algorithm optimization." }
+      { name: "Power BI (DAX, Power Query)", description: "Building interactive dashboards with custom KPIs, time intelligence measures, and data modeling." },
+      { name: "Microsoft Excel (Pivot Tables, Dashboards, Slicers)", description: "Creating dynamic reports and interactive dashboards for business stakeholders." },
+      { name: "Data Storytelling & Reporting", description: "Translating complex datasets into compelling visual narratives for executive review." }
     ],
-    icon: <Code2 className="w-6 h-6 text-primary" />
+    icon: <BarChart3 className="w-6 h-6 text-primary" />
   },
   {
-    category: "Data Intelligence",
+    category: "Databases & Languages",
     items: [
-      { name: "Exploratory Data Analysis (EDA)", description: "Uncovering hidden patterns and anomalies before modeling begins." },
-      { name: "Supervised & Unsupervised Learning", description: "Building predictive models using regression, classification, and clustering." },
-      { name: "Statistical Hypothesis Testing", description: "Validating business assumptions with rigorous statistical frameworks." }
+      { name: "SQL (T-SQL, Window Functions, CTEs)", description: "Architecting complex queries with DENSE_RANK, LAG, and multi-table joins for deep analysis." },
+      { name: "Python (Data Analysis Libraries)", description: "Leveraging Pandas, NumPy, and Matplotlib for data manipulation and exploratory analysis." },
+      { name: "Database Modeling & Schema Design", description: "Designing Star Schemas and relational models for optimized query performance." }
     ],
-    icon: <Brain className="w-6 h-6 text-secondary" />
+    icon: <Database className="w-6 h-6 text-secondary" />
   },
   {
-    category: "Analytical Context",
+    category: "Data Methodology",
     items: [
-      { name: "Economic Theory & Market Trends", description: "Applying macro/microeconomic principles to interpret market signals." },
-      { name: "Behavioral Data Analysis", description: "Decoding user intent and engagement through interaction logs." },
-      { name: "Data Storytelling & Visualization", description: "Translating complex datasets into actionable strategic narratives." }
+      { name: "ETL Processes & Data Cleaning", description: "End-to-end data pipelines — extraction, transformation, standardization, and quality assurance." },
+      { name: "Star Schema Modeling", description: "Designing dimensional models that reduce query latency and enable efficient BI reporting." },
+      { name: "Statistical Analysis & Feature Engineering", description: "Applying statistical methods to validate hypotheses and engineer meaningful features." }
     ],
-    icon: <Landmark className="w-6 h-6 text-accent" />
+    icon: <Brain className="w-6 h-6 text-accent" />
   },
   {
-    category: "Emerging Tech",
+    category: "Core Concepts",
     items: [
-      { name: "Natural Language Processing (NLP)", description: "Processing and generating human language for sentiment and context." },
-      { name: "LLM & AI Agent Integration", description: "Leveraging large language models to automate complex workflows." },
-      { name: "Interactive Dashboarding (Power BI)", description: "Creating real-time, interactive visualizations for stakeholder monitoring." }
+      { name: "Financial Reporting & Trend Analysis", description: "Tracking revenue metrics, sales volatility, and KPIs across time periods." },
+      { name: "Supply Chain Analytics", description: "Analyzing inventory performance, outlet segmentation, and distribution efficiency." },
+      { name: "Customer Segmentation & Market Analysis", description: "Identifying spending patterns, customer lifetime value, and regional market dynamics." }
     ],
-    icon: <Bot className="w-6 h-6 text-primary" />
+    icon: <LineChart className="w-6 h-6 text-primary" />
   }
 ];
 
 export const EXPERIENCE_DATA: ExperienceItem[] = [
   {
     id: "exp-ds",
-    role: "Data Science Specialization",
-    company: "Analytics Labs",
-    period: "2025 - Ongoing",
-    description: "Intensive training in advanced analytics, focusing on transforming raw data into business intelligence. Mastering predictive modeling, data mining, and engineering pipelines.",
-    skills: ["Machine Learning", "Advanced SQL", "Predictive Modeling"]
-  },
-  {
-    id: "exp-ai-buddy",
-    role: "Project Developer",
-    company: "Personal AI Buddy Project",
-    period: "2024 - Present",
-    description: "Developing a natural-language AI companion. Implementing NLP techniques to create a context-aware assistant capable of managing personal workflows and knowledge.",
-    skills: ["Python", "NLP", "API Integration", "Automation"]
+    role: "Data Science Professional Program",
+    company: "AnalytixLabs",
+    period: "Oct 2025 – Oct 2026",
+    description: "Specialized training in Data Visualization with Excel, SQL, Power BI, and Python. Building end-to-end analytical solutions from ETL to dashboard delivery. Upcoming modules in Machine Learning and Generative AI.",
+    skills: ["Power BI", "SQL", "Python", "Excel"]
   },
   {
     id: "exp-bca",
     role: "Bachelor of Computer Applications (BCA)",
-    company: "Academic Foundation",
-    period: "2022 - 2025",
-    description: "Built a solid technical foundation in software engineering, database management systems (DBMS), and algorithm design. Graduating with a focus on data-centric computing.",
-    skills: ["DBMS", "Data Structures", "System Design"]
+    company: "Chaudhary Devi Lal University",
+    period: "2022 – 2025",
+    description: "Built a strong technical foundation in software engineering, database management systems, and algorithm design with a focus on data-centric computing and analytical problem-solving.",
+    skills: ["DBMS", "Data Structures", "Algorithms", "System Design"]
   },
   {
-    id: "exp-econ",
-    role: "Economics & Logic Explorer",
-    company: "Independent Study",
+    id: "exp-achievements",
+    role: "Achievements & Leadership",
+    company: "Professional Growth",
     period: "Ongoing",
-    description: "Self-driven study of economic principles to enhance data interpretation. Applying micro/macroeconomic frameworks to solve complex business logic problems.",
-    skills: ["Economics", "Statistical Analysis", "Logic"]
+    description: "Translated complex data discrepancies into clear business insights for inventory optimization. Recognized for developing high-efficiency Star Schemas that reduced query latency. Currently pursuing Data Science certification focusing on predictive modeling.",
+    skills: ["Star Schema", "Data Modeling", "Business Insights", "Certification"]
   },
 ];
 
 export const PROJECTS_DATA: Project[] = [
   {
-    id: "proj-ai-buddy",
-    title: "Personal AI Buddy",
-    category: "ML",
-    description: "A customized AI assistant designed to streamline personal workflows and manage knowledge bases through natural language interaction.",
+    id: "proj-retail-bi",
+    title: "Retail Business Intelligence Dashboard",
+    category: "BI",
+    description: "Engineered a multi-source data model integrating Sales, Geographic, and Product data into a Star Schema. Built custom DAX KPIs including 'Net Units' and Time Intelligence measures to track weekly and monthly sales volatility.",
     metrics: [
-      { label: "Response Latency", value: "< 2s" },
-      { label: "Framework", value: "LLM-Based" }
+      { label: "Data Integrity", value: "100%" },
+      { label: "Schema", value: "Star" }
     ],
-    tags: ["NLP", "Python", "Automation"],
-    link: "https://github.com/Flute22",
+    tags: ["Power BI", "DAX", "Power Query", "ETL", "Star Schema"],
+    link: "https://github.com/Flute22/Power-BI-Dashboards",
     chartData: [
-      { name: 'W1', value: 20 },
-      { name: 'W2', value: 45 },
-      { name: 'W3', value: 75 },
-      { name: 'W4', value: 95 },
+      { name: 'W1', value: 320 },
+      { name: 'W2', value: 480 },
+      { name: 'W3', value: 390 },
+      { name: 'W4', value: 560 },
     ]
   },
   {
-    id: "proj-1",
-    title: "Economic Impact Analysis",
+    id: "proj-mobile-sql",
+    title: "Mobile Manufacturer Sales Trends",
     category: "Analytics",
-    description: "A data study investigating how regional economic shifts correlate with consumer spending patterns using public financial datasets.",
+    description: "Architected complex T-SQL queries using CTEs and Joins across five relational tables. Applied DENSE_RANK() to identify top-selling manufacturers and LAG() for Year-Over-Year spending growth analysis of top-tier customers.",
     metrics: [
-      { label: "Data points", value: "30k+" },
-      { label: "Accuracy", value: "82%" }
+      { label: "Tables Joined", value: "5" },
+      { label: "Analysis", value: "YoY" }
     ],
-    tags: ["Python", "Economics", "Visualization"],
-    link: "https://github.com/Flute22",
+    tags: ["SQL", "T-SQL", "CTEs", "Window Functions", "Joins"],
+    link: "https://github.com/Flute22/SQL_Mastery/tree/main/Mobile%20manufactured%20data%20analysis",
     chartData: [
-      { name: 'Jan', value: 400 },
-      { name: 'Feb', value: 300 },
-      { name: 'Mar', value: 200 },
-      { name: 'Apr', value: 278 },
-      { name: 'May', value: 189 },
-      { name: 'Jun', value: 150 },
+      { name: 'Q1', value: 210 },
+      { name: 'Q2', value: 340 },
+      { name: 'Q3', value: 290 },
+      { name: 'Q4', value: 450 },
     ]
   },
   {
-    id: "proj-sentiment",
-    title: "Market Sentiment Tracker",
-    category: "Engineering",
-    description: "Real-time pipeline processing social media feeds to gauge market sentiment for crypto assets.",
+    id: "proj-blinkit",
+    title: "Blinkit Supply Chain & Sales Dashboard",
+    category: "Excel",
+    description: "Processed 8,500+ retail items, standardizing inconsistent categorical data to ensure accurate reporting. Built interactive dashboards tracking $1.20M in total sales. Identified that 'Low Fat' products generated 82% more revenue than 'Regular' items.",
     metrics: [
-      { label: "Latency", value: "< 50ms" },
-      { label: "Volume", value: "1TB/day" }
+      { label: "Total Sales", value: "$1.20M" },
+      { label: "Items Processed", value: "8.5K+" }
     ],
-    tags: ["Kafka", "Spark", "AWS"],
-    link: "https://github.com/Flute22",
+    tags: ["Excel", "Pivot Tables", "Slicers", "Data Cleaning"],
+    link: "https://github.com/Flute22/Excel-Dashboards",
     chartData: [
-      { name: '00:00', value: 30 },
-      { name: '06:00', value: 45 },
-      { name: '12:00', value: 85 },
-      { name: '18:00', value: 60 },
-    ]
-  },
-  {
-    id: "proj-health",
-    title: "Healthcare Resource Optimizer",
-    category: "Analytics",
-    description: "Predictive model for hospital bed allocation during peak seasons using historical admission data.",
-    metrics: [
-      { label: "Efficiency", value: "+15%" },
-      { label: "MAE", value: "2.3" }
-    ],
-    tags: ["R", "Tableau", "Forecasting"],
-    link: "https://github.com/Flute22",
-    chartData: [
-      { name: 'Q1', value: 80 },
-      { name: 'Q2', value: 65 },
-      { name: 'Q3', value: 45 },
-      { name: 'Q4', value: 90 },
+      { name: 'Low Fat', value: 776 },
+      { name: 'Regular', value: 425 },
     ]
   }
 ];
@@ -186,21 +155,21 @@ export const PROJECTS_DATA: Project[] = [
 export const CASE_STUDIES_DATA: CaseStudy[] = [
   {
     id: "cs-1",
-    title: "Synthesizing Economics & Data",
-    description: "An exploration of how understanding market dynamics provides a strategic framework for interpreting raw analytical outputs.",
+    title: "From Raw Data to Business Strategy",
+    description: "How a comprehensive ETL process and Star Schema design transformed fragmented retail data into a 360-degree view of business health for executive decision-making.",
     keyInsights: [
-      { text: "Economic models act as a validation layer for ML predictions.", visualType: 'transformation' },
-      { text: "Identified market-driven anomalies in standard demand datasets.", visualType: 'growth' }
+      { text: "Geographic standardization and missing-record handling ensured 100% data integrity across all sources.", visualType: 'transformation' },
+      { text: "Custom DAX KPIs like 'Net Units' revealed hidden sales volatility masked by raw transaction counts.", visualType: 'growth' }
     ],
     link: "#"
   },
   {
     id: "cs-2",
-    title: "The Logic of the Transition",
-    description: "Documenting how core BCA principles in DBMS and algorithms facilitated a rapid mastery of Data Science fundamentals.",
+    title: "SQL-Driven Market Intelligence",
+    description: "Leveraging advanced T-SQL techniques to uncover market dynamics, customer lifetime value, and the correlation between pricing strategies and regional sales volume.",
     keyInsights: [
-      { text: "Applied database normalization concepts to large-scale data cleaning.", visualType: 'network' },
-      { text: "Systematic approach to debugging complex analytical pipelines.", visualType: 'reduction' }
+      { text: "Window functions (LAG) revealed Year-Over-Year spending growth patterns for top-tier customers.", visualType: 'network' },
+      { text: "EXCEPT operations isolated new market entrants, providing competitive intelligence insights.", visualType: 'reduction' }
     ],
     link: "#"
   }
