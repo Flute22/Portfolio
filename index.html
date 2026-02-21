@@ -5,191 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Khushal Sinhmar | Data Professional Portfolio</title>
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Preconnect to Google Fonts for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ["Inter", "sans-serif"],
-              mono: ["JetBrains Mono", "monospace"],
-            },
-            colors: {
-              background: "#020617", // slate-950
-              surface: "#0f172a", // slate-900
-              surfaceHighlight: "#1e293b", // slate-800
-              primary: "#38bdf8", // sky-400
-              secondary: "#2dd4bf", // teal-400
-              accent: "#818cf8", // indigo-400
-              muted: "#94a3b8", // slate-400
-            },
-            backgroundImage: {
-              "grid-pattern":
-                "linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)",
-            },
-            animation: {
-              "name-reveal":
-                "nameReveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards",
-              "glide-in": "glideIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-              "fade-in": "fadeIn 1s ease-out forwards",
-              "slide-up": "slideUp 0.8s ease-out forwards",
-              typing: "typing 1.2s steps(20) forwards",
-              blink: "blink 0.7s step-end infinite",
-              "text-shine": "textShine 5s linear infinite",
-            },
-          },
-        },
-      };
-    </script>
-    <style>
-      @keyframes nameReveal {
-        0% {
-          transform: translateY(100%);
-          opacity: 0;
-          filter: blur(5px);
-        }
-        100% {
-          transform: translateY(0);
-          opacity: 1;
-          filter: blur(0);
-        }
-      }
-      @keyframes glideIn {
-        0% {
-          transform: translateX(-20px);
-          opacity: 0;
-        }
-        100% {
-          transform: translateX(0);
-          opacity: 1;
-        }
-      }
-      @keyframes fadeIn {
-        0% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
-      @keyframes slideUp {
-        0% {
-          transform: translateY(20px);
-          opacity: 0;
-        }
-        100% {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-      @keyframes typing {
-        from {
-          width: 0;
-        }
-        to {
-          width: 100%;
-        }
-      }
-      @keyframes blink {
-        from,
-        to {
-          border-color: transparent;
-        }
-        50% {
-          border-color: #38bdf8;
-        }
-      }
-      @keyframes borderGlowPulse {
-        0%,
-        100% {
-          box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
-          border-color: rgba(56, 189, 248, 0.3);
-        }
-        50% {
-          box-shadow: 0 0 30px rgba(56, 189, 248, 0.45);
-          border-color: rgba(56, 189, 248, 0.8);
-        }
-      }
-      @keyframes textShine {
-        0% {
-          background-position: 0% 50%;
-        }
-        100% {
-          background-position: 200% 50%;
-        }
-      }
-
-      body {
-        background-color: #020617;
-        color: #e2e8f0;
-      }
-      .perspective-1000 {
-        perspective: 1000px;
-      }
-      .preserve-3d {
-        transform-style: preserve-3d;
-      }
-      .backface-hidden {
-        backface-visibility: hidden;
-      }
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #020617;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #334155;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #475569;
-      }
-    </style>
-    <script type="importmap">
-      {
-        "imports": {
-          "react/": "https://esm.sh/react@^19.2.3/",
-          "react": "https://esm.sh/react@^19.2.3",
-          "recharts": "https://esm.sh/recharts@^3.6.0",
-          "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-          "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
-        }
-      }
-    </script>
-    <script>
-      // Dynamic Favicon Optimization
-      window.addEventListener('load', () => {
-        const img = new Image();
-        img.src = '/favicon.png';
-        img.crossOrigin = 'anonymous';
-        img.onload = () => {
-          const canvas = document.createElement('canvas');
-          const ctx = canvas.getContext('2d');
-          canvas.width = img.width;
-          canvas.height = img.height;
-          // Matching the user's refined filters for the profile picture
-          ctx.filter = 'brightness(0.88) contrast(1.90) saturate(0.9)';
-          ctx.drawImage(img, 0, 0);
-          
-          let link = document.querySelector("link[rel*='icon']");
-          if (!link) {
-            link = document.createElement('link');
-            document.head.appendChild(link);
-          }
-          link.href = canvas.toDataURL('image/png');
-        };
-      });
-    </script>
-    <link rel="stylesheet" href="/index.css" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
+    <script>
+      // Apply dark-theme filters to favicon
+      window.addEventListener('load', function() {
+        var img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = function() {
+          var c = document.createElement('canvas');
+          c.width = img.width;
+          c.height = img.height;
+          var ctx = c.getContext('2d');
+          ctx.filter = 'brightness(0.88) contrast(1.70) saturate(0.9)';
+          ctx.drawImage(img, 0, 0);
+          var link = document.querySelector("link[rel='icon']");
+          if (link) link.href = c.toDataURL('image/png');
+        };
+        img.src = '/favicon.png';
+      });
+    </script>
   </body>
 </html>

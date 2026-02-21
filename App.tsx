@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { Background } from './components/visuals/Background';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -8,8 +8,10 @@ import { Projects } from './components/Projects';
 import { Experience } from './components/Experience';
 import { CaseStudies } from './components/CaseStudies';
 import { Contact } from './components/Contact';
-import { ContactModal } from './components/ContactModal';
-import { ResumeManager } from './components/ResumeManager';
+
+// Lazy load heavy modal components — only loaded when user clicks to open them
+const ContactModal = lazy(() => import('./components/ContactModal').then(m => ({ default: m.ContactModal })));
+const ResumeManager = lazy(() => import('./components/ResumeManager').then(m => ({ default: m.ResumeManager })));
 
 function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -36,14 +38,20 @@ function App() {
         <Contact onOpenContact={handleOpenContact} />
       </main>
 
-      <ContactModal
-        isOpen={isContactModalOpen}
-        onClose={handleCloseContact}
-      />
-      <ResumeManager
-        isOpen={isResumeManagerOpen}
-        onClose={handleCloseResumeManager}
-      />
+      <Suspense fallback={null}>
+        {isContactModalOpen && (
+          <ContactModal
+            isOpen={isContactModalOpen}
+            onClose={handleCloseContact}
+          />
+        )}
+        {isResumeManagerOpen && (
+          <ResumeManager
+            isOpen={isResumeManagerOpen}
+            onClose={handleCloseResumeManager}
+          />
+        )}
+      </Suspense>
     </div>
   );
 }

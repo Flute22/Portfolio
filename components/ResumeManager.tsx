@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, Upload, FileText, Trash2, CheckCircle, AlertCircle, HardDrive } from 'lucide-react';
 import { RESUME_STORAGE_KEY, RESUME_DEFAULT_URL } from '../constants';
+export { getResumeUrl, getResumeFileName } from './resumeUtils';
 
 interface ResumeManagerProps {
     isOpen: boolean;
@@ -13,32 +14,6 @@ interface StoredResume {
     data: string; // base64 data URL
     uploadedAt: string;
 }
-
-export const getResumeUrl = (): string => {
-    try {
-        const stored = localStorage.getItem(RESUME_STORAGE_KEY);
-        if (stored) {
-            const parsed: StoredResume = JSON.parse(stored);
-            return parsed.data;
-        }
-    } catch {
-        // Fall through to default
-    }
-    return RESUME_DEFAULT_URL;
-};
-
-export const getResumeFileName = (): string => {
-    try {
-        const stored = localStorage.getItem(RESUME_STORAGE_KEY);
-        if (stored) {
-            const parsed: StoredResume = JSON.parse(stored);
-            return parsed.name;
-        }
-    } catch {
-        // Fall through to default
-    }
-    return 'resume.pdf';
-};
 
 const formatFileSize = (bytes: number): string => {
     if (bytes < 1024) return `${bytes} B`;

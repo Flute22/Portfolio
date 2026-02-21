@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRight, Download } from 'lucide-react';
 import { HERO_DATA } from '../constants';
-import { getResumeUrl, getResumeFileName } from './ResumeManager';
+import { getResumeUrl, getResumeFileName } from './resumeUtils';
 
 export const Hero: React.FC = () => {
   return (
@@ -79,7 +79,9 @@ export const Hero: React.FC = () => {
               <img
                 src={HERO_DATA.avatarUrl}
                 alt={HERO_DATA.name}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 brightness-[0.88] contrast-[1.80] saturate-[0.9]"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 brightness-[0.88] contrast-[1.70] saturate-[0.9]"
+                width={400}
+                height={400}
                 loading="eager"
               />
 

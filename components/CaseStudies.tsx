@@ -49,16 +49,6 @@ const InsightVisual: React.FC<{ type: 'growth' | 'network' | 'reduction' | 'tran
 export const CaseStudies: React.FC = () => {
   return (
     <section id="case-studies" className="py-16 md:py-24 relative border-t border-white/5">
-      <style>{`
-        @keyframes grow {
-          0% { transform: scaleY(0.2); opacity: 0.5; }
-          50% { transform: scaleY(1); opacity: 1; }
-          100% { transform: scaleY(0.2); opacity: 0.5; }
-        }
-        @keyframes dash {
-          to { stroke-dashoffset: 0; }
-        }
-      `}</style>
       <div className="max-w-6xl mx-auto px-6">
         <div className="mb-12 md:mb-16 md:text-center max-w-2xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Deep Dives & Case Studies</h2>
@@ -75,7 +65,7 @@ export const CaseStudies: React.FC = () => {
                   </div>
                   <span className="text-sm font-mono tracking-wider uppercase opacity-80">Case Study</span>
                 </div>
-                
+
                 <h3 className="text-2xl font-bold mb-4 leading-tight">{study.title}</h3>
                 <p className="text-slate-400 mb-8 leading-relaxed">
                   {study.description}
