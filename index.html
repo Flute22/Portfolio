@@ -162,6 +162,30 @@
         }
       }
     </script>
+    <script>
+      // Dynamic Favicon Optimization
+      window.addEventListener('load', () => {
+        const img = new Image();
+        img.src = '/favicon.png';
+        img.crossOrigin = 'anonymous';
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          // Matching the user's refined filters for the profile picture
+          ctx.filter = 'brightness(0.88) contrast(1.90) saturate(0.9)';
+          ctx.drawImage(img, 0, 0);
+          
+          let link = document.querySelector("link[rel*='icon']");
+          if (!link) {
+            link = document.createElement('link');
+            document.head.appendChild(link);
+          }
+          link.href = canvas.toDataURL('image/png');
+        };
+      });
+    </script>
     <link rel="stylesheet" href="/index.css" />
   </head>
   <body>

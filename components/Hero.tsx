@@ -75,13 +75,17 @@ export const Hero: React.FC = () => {
             <div className="absolute inset-4 bg-primary/20 rounded-[2rem] blur-3xl -z-10 opacity-40" />
 
             {/* Image Container - Soft Rounded Rectangle with Light Border */}
-            <div className="w-full h-full rounded-[2rem] overflow-hidden border border-white/10 bg-surfaceHighlight/30 backdrop-blur-sm shadow-xl relative z-10">
+            <div className="w-full h-full rounded-[2rem] overflow-hidden border border-white/10 bg-surfaceHighlight/30 backdrop-blur-sm shadow-xl relative z-10 group">
               <img
                 src={HERO_DATA.avatarUrl}
                 alt={HERO_DATA.name}
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 brightness-[0.88] contrast-[1.80] saturate-[0.9]"
                 loading="eager"
               />
+
+              {/* Darkening Overlay for Tone Match */}
+              <div className="absolute inset-0 bg-slate-950/20 mix-blend-multiply pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/20 pointer-events-none"></div>
 
               {/* Optional: Very subtle inner highlight for dimension */}
               <div className="absolute inset-0 border border-white/5 rounded-[2rem] pointer-events-none mix-blend-overlay"></div>
