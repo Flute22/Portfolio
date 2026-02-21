@@ -83,6 +83,7 @@ export const Hero: React.FC = () => {
                 width={400}
                 height={400}
                 loading="eager"
+                fetchPriority="high"
               />
 
               {/* Darkening Overlay for Tone Match */}
