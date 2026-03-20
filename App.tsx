@@ -6,6 +6,7 @@ import { About } from './components/About';
 import { Skills } from './components/Skills';
 import { Projects } from './components/Projects';
 import { Experience } from './components/Experience';
+import { Certifications } from './components/Certifications';
 import { CaseStudies } from './components/CaseStudies';
 import { Contact } from './components/Contact';
 
@@ -34,6 +35,7 @@ function App() {
         <Skills />
         <Projects />
         <Experience />
+        <Certifications />
         <CaseStudies />
         <Contact onOpenContact={handleOpenContact} />
       </main>

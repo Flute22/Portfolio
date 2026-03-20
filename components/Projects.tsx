@@ -1,21 +1,28 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { ExternalLink, TrendingUp, ArrowRight } from 'lucide-react';
 import { PROJECTS_DATA } from '../constants';
 import { TiltCard } from './ui/TiltCard';
-import { ChartPreview } from './visuals/ChartPreview';
+import { ScrollReveal } from './ui/ScrollReveal';
+
+const ChartPreview = lazy(() =>
+  import('./visuals/ChartPreview').then(m => ({ default: m.ChartPreview }))
+);
 
 export const Projects: React.FC = () => {
   return (
     <section id="projects" className="py-20 md:py-32">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Selected Work</h2>
-          <div className="h-1 w-20 bg-primary rounded-full"></div>
-        </div>
+        <ScrollReveal>
+          <div className="mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Selected Work</h2>
+            <div className="h-1 w-20 bg-primary rounded-full"></div>
+          </div>
+        </ScrollReveal>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {PROJECTS_DATA.map((project) => (
-            <TiltCard key={project.id} className="h-full" intensity={15}>
+          {PROJECTS_DATA.map((project, idx) => (
+            <ScrollReveal key={project.id} delay={idx * 100} direction="up">
+            <TiltCard className="h-full" intensity={15}>
               <div className="h-full bg-surfaceHighlight/30 border border-white/5 rounded-2xl p-6 backdrop-blur-sm flex flex-col group transition-all duration-300 relative overflow-hidden hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 hover:animate-[borderGlowPulse_2s_ease-in-out_infinite]">
 
                 {/* Header */}
@@ -51,7 +58,9 @@ export const Projects: React.FC = () => {
                     <TrendingUp className="w-3 h-3" />
                     <span>Performance Trend</span>
                   </div>
-                  <ChartPreview data={project.chartData} color={project.category === 'ML' ? '#38bdf8' : project.category === 'Analytics' ? '#2dd4bf' : project.category === 'BI' ? '#f59e0b' : '#818cf8'} />
+                  <Suspense fallback={<div className="h-16 bg-white/5 rounded animate-pulse" />}>
+                    <ChartPreview data={project.chartData} color={project.category === 'ML' ? '#38bdf8' : project.category === 'Analytics' ? '#2dd4bf' : project.category === 'BI' ? '#f59e0b' : '#818cf8'} />
+                  </Suspense>
                 </div>
 
                 {/* Tags & Link Container */}
@@ -82,6 +91,7 @@ export const Projects: React.FC = () => {
 
               </div>
             </TiltCard>
+            </ScrollReveal>
           ))}
         </div>
 
