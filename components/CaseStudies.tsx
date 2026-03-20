@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, Lightbulb, FileText, Share2, TrendingUp, Filter, Repeat } from 'lucide-react';
 import { CASE_STUDIES_DATA } from '../constants';
 import { TiltCard } from './ui/TiltCard';
+import { ScrollReveal } from './ui/ScrollReveal';
 
 const InsightVisual: React.FC<{ type: 'growth' | 'network' | 'reduction' | 'transformation' }> = ({ type }) => {
   switch (type) {
@@ -50,14 +51,17 @@ export const CaseStudies: React.FC = () => {
   return (
     <section id="case-studies" className="py-16 md:py-24 relative border-t border-white/5">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="mb-12 md:mb-16 md:text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Deep Dives & Case Studies</h2>
-          <p className="text-muted">A closer look at the methodology, experiments, and results behind complex data problems.</p>
-        </div>
+        <ScrollReveal>
+          <div className="mb-12 md:mb-16 md:text-center max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Deep Dives & Case Studies</h2>
+            <p className="text-muted">A closer look at the methodology, experiments, and results behind complex data problems.</p>
+          </div>
+        </ScrollReveal>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {CASE_STUDIES_DATA.map((study) => (
-            <TiltCard key={study.id} className="h-full" intensity={10}>
+          {CASE_STUDIES_DATA.map((study, idx) => (
+            <ScrollReveal key={study.id} delay={idx * 120} direction="up">
+            <TiltCard className="h-full" intensity={10}>
               <div className="h-full bg-surfaceHighlight/30 border border-white/5 p-8 rounded-2xl backdrop-blur-sm flex flex-col hover:border-white/10 transition-colors">
                 <div className="flex items-center gap-3 mb-6 text-primary">
                   <div className="p-2 bg-primary/10 rounded-lg">
@@ -98,6 +102,7 @@ export const CaseStudies: React.FC = () => {
                 </div>
               </div>
             </TiltCard>
+            </ScrollReveal>
           ))}
         </div>
       </div>

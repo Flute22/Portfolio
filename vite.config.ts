@@ -29,6 +29,8 @@ export default defineConfig(({ mode }) => {
           // Split vendor chunks for better caching
           manualChunks: {
             'react-vendor': ['react', 'react-dom'],
+            'charts': ['recharts'],
+            'icons': ['lucide-react'],
           },
         },
       },

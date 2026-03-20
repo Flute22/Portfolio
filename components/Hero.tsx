@@ -1,7 +1,58 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Download } from 'lucide-react';
 import { HERO_DATA } from '../constants';
 import { getResumeUrl, getResumeFileName } from './resumeUtils';
+
+const STATS = [
+  { label: 'Projects Completed', value: 3, suffix: '' },
+  { label: 'Data Points Processed', value: 8500, suffix: '+' },
+  { label: 'Sales Tracked', value: 1.2, suffix: 'M+', prefix: '$' },
+];
+
+function useCountUp(target: number, duration = 1400, decimals = 0) {
+  const [count, setCount] = useState(0);
+  const started = useRef(false);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started.current) {
+          started.current = true;
+          const startTime = performance.now();
+          const step = (now: number) => {
+            const progress = Math.min((now - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setCount(parseFloat((eased * target).toFixed(decimals)));
+            if (progress < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [target, duration, decimals]);
+
+  return { count, ref };
+}
+
+const StatCounter: React.FC<{ stat: typeof STATS[number] }> = ({ stat }) => {
+  const decimals = stat.value % 1 !== 0 ? 1 : 0;
+  const { count, ref } = useCountUp(stat.value, 1400, decimals);
+  return (
+    <div className="flex flex-col items-start">
+      <span ref={ref} className="text-2xl font-bold text-white font-mono tabular-nums">
+        {stat.prefix}{decimals > 0 ? count.toFixed(1) : Math.round(count)}{stat.suffix}
+      </span>
+      <span className="text-xs text-muted mt-0.5">{stat.label}</span>
+    </div>
+  );
+};
 
 export const Hero: React.FC = () => {
   return (
@@ -44,6 +95,13 @@ export const Hero: React.FC = () => {
           <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-lg animate-slide-up" style={{ animationDelay: '0.2s', opacity: 0, animationFillMode: 'forwards' }}>
             {HERO_DATA.description}
           </p>
+
+          {/* Stats */}
+          <div className="flex flex-wrap gap-8 pt-2 animate-slide-up border-t border-white/5" style={{ animationDelay: '0.25s', opacity: 0, animationFillMode: 'forwards' }}>
+            {STATS.map((stat) => (
+              <StatCounter key={stat.label} stat={stat} />
+            ))}
+          </div>
 
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-4 pt-2 animate-slide-up" style={{ animationDelay: '0.3s', opacity: 0, animationFillMode: 'forwards' }}>

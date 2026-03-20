@@ -23,6 +23,17 @@ export interface ExperienceItem {
 export interface SkillItem {
   name: string;
   description: string;
+  proficiency: number;
+}
+
+export interface Certification {
+  id: string;
+  title: string;
+  issuer: string;
+  period: string;
+  status: 'Completed' | 'In Progress';
+  skills: string[];
+  description: string;
 }
 
 export interface SkillGroup {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Database, Brain, BarChart3, LineChart, Github, Linkedin, Instagram } from 'lucide-react';
-import { Project, ExperienceItem, SkillGroup, CaseStudy } from './types';
+import { Project, ExperienceItem, SkillGroup, CaseStudy, Certification } from './types';
 
 export const HERO_DATA = {
   name: "Khushal Sinhmar",
@@ -35,36 +35,36 @@ export const SKILLS_DATA: SkillGroup[] = [
   {
     category: "Data Visualization",
     items: [
-      { name: "Power BI (DAX, Power Query)", description: "Building interactive dashboards with custom KPIs, time intelligence measures, and data modeling." },
-      { name: "Microsoft Excel (Pivot Tables, Dashboards, Slicers)", description: "Creating dynamic reports and interactive dashboards for business stakeholders." },
-      { name: "Data Storytelling & Reporting", description: "Translating complex datasets into compelling visual narratives for executive review." }
+      { name: "Power BI (DAX, Power Query)", description: "Building interactive dashboards with custom KPIs, time intelligence measures, and data modeling.", proficiency: 88 },
+      { name: "Microsoft Excel (Pivot Tables, Dashboards, Slicers)", description: "Creating dynamic reports and interactive dashboards for business stakeholders.", proficiency: 92 },
+      { name: "Data Storytelling & Reporting", description: "Translating complex datasets into compelling visual narratives for executive review.", proficiency: 85 }
     ],
     icon: <BarChart3 className="w-6 h-6 text-primary" />
   },
   {
     category: "Databases & Languages",
     items: [
-      { name: "SQL (T-SQL, Window Functions, CTEs)", description: "Architecting complex queries with DENSE_RANK, LAG, and multi-table joins for deep analysis." },
-      { name: "Python (Data Analysis Libraries)", description: "Leveraging Pandas, NumPy, and Matplotlib for data manipulation and exploratory analysis." },
-      { name: "Database Modeling & Schema Design", description: "Designing Star Schemas and relational models for optimized query performance." }
+      { name: "SQL (T-SQL, Window Functions, CTEs)", description: "Architecting complex queries with DENSE_RANK, LAG, and multi-table joins for deep analysis.", proficiency: 87 },
+      { name: "Python (Data Analysis Libraries)", description: "Leveraging Pandas, NumPy, and Matplotlib for data manipulation and exploratory analysis.", proficiency: 75 },
+      { name: "Database Modeling & Schema Design", description: "Designing Star Schemas and relational models for optimized query performance.", proficiency: 83 }
     ],
     icon: <Database className="w-6 h-6 text-secondary" />
   },
   {
     category: "Data Methodology",
     items: [
-      { name: "ETL Processes & Data Cleaning", description: "End-to-end data pipelines — extraction, transformation, standardization, and quality assurance." },
-      { name: "Star Schema Modeling", description: "Designing dimensional models that reduce query latency and enable efficient BI reporting." },
-      { name: "Statistical Analysis & Feature Engineering", description: "Applying statistical methods to validate hypotheses and engineer meaningful features." }
+      { name: "ETL Processes & Data Cleaning", description: "End-to-end data pipelines — extraction, transformation, standardization, and quality assurance.", proficiency: 86 },
+      { name: "Star Schema Modeling", description: "Designing dimensional models that reduce query latency and enable efficient BI reporting.", proficiency: 84 },
+      { name: "Statistical Analysis & Feature Engineering", description: "Applying statistical methods to validate hypotheses and engineer meaningful features.", proficiency: 72 }
     ],
     icon: <Brain className="w-6 h-6 text-accent" />
   },
   {
     category: "Core Concepts",
     items: [
-      { name: "Financial Reporting & Trend Analysis", description: "Tracking revenue metrics, sales volatility, and KPIs across time periods." },
-      { name: "Supply Chain Analytics", description: "Analyzing inventory performance, outlet segmentation, and distribution efficiency." },
-      { name: "Customer Segmentation & Market Analysis", description: "Identifying spending patterns, customer lifetime value, and regional market dynamics." }
+      { name: "Financial Reporting & Trend Analysis", description: "Tracking revenue metrics, sales volatility, and KPIs across time periods.", proficiency: 88 },
+      { name: "Supply Chain Analytics", description: "Analyzing inventory performance, outlet segmentation, and distribution efficiency.", proficiency: 82 },
+      { name: "Customer Segmentation & Market Analysis", description: "Identifying spending patterns, customer lifetime value, and regional market dynamics.", proficiency: 80 }
     ],
     icon: <LineChart className="w-6 h-6 text-primary" />
   }
@@ -148,6 +148,27 @@ export const PROJECTS_DATA: Project[] = [
       { name: 'Low Fat', value: 776 },
       { name: 'Regular', value: 425 },
     ]
+  }
+];
+
+export const CERTIFICATIONS_DATA: Certification[] = [
+  {
+    id: "cert-analytixlabs",
+    title: "Data Science Professional Program",
+    issuer: "AnalytixLabs",
+    period: "Oct 2025 – Oct 2026",
+    status: "In Progress",
+    skills: ["Power BI", "SQL", "Python", "Machine Learning", "Generative AI", "MLOps", "Statistics"],
+    description: "End-to-end professional program covering BI dashboarding, advanced SQL, Python for data analysis, and upcoming modules in Machine Learning and Generative AI."
+  },
+  {
+    id: "cert-bca",
+    title: "Bachelor of Computer Applications",
+    issuer: "University",
+    period: "2022 – 2025",
+    status: "Completed",
+    skills: ["DBMS", "Data Structures", "Algorithms", "System Design", "Web Development"],
+    description: "Strong technical foundation in software engineering, database management systems, and algorithm design with a focus on data-centric computing."
   }
 ];
 
