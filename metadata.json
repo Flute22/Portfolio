@@ -1,5 +1,12 @@
 {
+<<<<<<< HEAD
   "name": "",
   "description": "",
   "requestFramePermissions": []
 }
+=======
+  "name": "Khushal Sinhmar Portfolio",
+  "description": "A 3D-inspired, minimalist portfolio website tailored for data professionals, featuring interactive project cards and analytical aesthetics.",
+  "requestFramePermissions": []
+}
+>>>>>>> 77ac77f02cb747e938e2f94013a43a3cf71ebaf4
