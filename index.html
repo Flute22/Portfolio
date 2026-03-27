@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pankaj Advania | Videographer & Visual Artist</title>
+    <meta name="description" content="Pankaj Advania — Videographer, Photographer, Video Editor & Photo Editor. Capturing and crafting visual stories that move people.">
+    
+    <!-- DNS prefetch for CDN scripts -->
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://grainy-gradients.vercel.app">
+
+    <!-- Preload critical script -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" as="script">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@75..125,100..900&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="is-loading">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- Film Grain Overlay -->
+    <div class="film-grain"></div>
+    <div class="scan-lines"></div>
+
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-label">ACADEMY LEADER — FRAME 001</div>
+        <div id="countdown" class="countdown">3</div>
+        <div class="preloader-scratches"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#work" class="nav-pill" data-tooltip="View my portfolio">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <span>See My Work</span>
+            </a>
+            <a href="#about" class="nav-pill" data-tooltip="Learn about my process">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <span>Selected Cuts</span>
+            </a>
+            <a href="#contact" class="nav-pill" data-tooltip="Get in touch for a project">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                <span>Book a Session</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress">
+        <div class="sprocket-holes top"></div>
+        <div class="progress-bar-container">
+            <div class="progress-bar"></div>
+        </div>
+        <div class="sprocket-holes bottom"></div>
+    </div>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-video-bg">
+                <video autoplay muted loop playsinline fetchpriority="low" poster="https://picsum.photos/seed/film/1920/1080?blur=10">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-cinematic-shot-of-a-man-walking-in-the-forest-4318-large.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="spotlight"></div>
+            
+            <div class="hero-content">
+                <div class="hero-top-label">VIDEOGRAPHER ✦ PHOTOGRAPHER ✦ VIDEO & PHOTO EDITOR</div>
+                
+                <h1 class="hero-name">
+                    <span class="line-1">PANKAJ</span>
+                    <span class="line-2">ADVANIA<svg class="underline-svg" viewBox="0 0 400 20"><path d="M10,10 Q200,20 390,10" fill="none" stroke="#E8A838" stroke-width="3"/></svg></span>
+                </h1>
+
+                <div class="hero-stats-container">
+                    <div class="stat-pill left">
+                        <div class="stat-number" data-target="847">0</div>
+                        <div class="stat-label">PROJECTS DELIVERED</div>
+                    </div>
+                    <div class="stat-pill right">
+                        <div class="stat-number" data-target="6">0</div>
+                        <div class="stat-label">YRS OF VISUAL STORYTELLING</div>
+                    </div>
+                </div>
+
+                <div class="hero-tagline">
+                    <span id="typewriter"></span><span class="cursor"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marquee Strip -->
+        <section class="marquee-section">
+            <div class="marquee-row row-left">
+                <div class="marquee-content">
+                    WEDDING FILMS ✦ FASHION PHOTOGRAPHY ✦ EVENT COVERAGE ✦ PRODUCT SHOOTS ✦ TRAVEL VIDEOGRAPHY ✦ DOCUMENTARY ✦ MUSIC VIDEOS ✦ BRAND CAMPAIGNS ✦ WEDDING FILMS ✦ FASHION PHOTOGRAPHY ✦ EVENT COVERAGE ✦ PRODUCT SHOOTS ✦ TRAVEL VIDEOGRAPHY ✦ DOCUMENTARY ✦ MUSIC VIDEOS ✦ BRAND CAMPAIGNS
+                </div>
+            </div>
+            <div class="marquee-row row-right">
+                <div class="marquee-content">
+                    PORTRAIT PHOTOGRAPHY ✦ VIDEO EDITING ✦ COLOR GRADING ✦ PHOTO RETOUCHING ✦ AERIAL VIDEOGRAPHY ✦ CINEMATIC GRADING ✦ LIGHTROOM EDITING ✦ PORTRAIT PHOTOGRAPHY ✦ VIDEO EDITING ✦ COLOR GRADING ✦ PHOTO RETOUCHING ✦ AERIAL VIDEOGRAPHY ✦ CINEMATIC GRADING ✦ LIGHTROOM EDITING
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="about-container">
+                <div class="about-left">
+                    <div class="portrait-wrapper">
+                        <img src="https://picsum.photos/seed/editor/800/1200" alt="Pankaj Advania" class="portrait-img" loading="lazy" decoding="async">
+                        <div class="frame-badge">▶ <span id="frame-counter">000000</span> FRAMES</div>
+                    </div>
+                </div>
+                <div class="about-right">
+                    <div class="section-label">// ABOUT PANKAJ</div>
+                    <h2 class="about-heading">I capture life, then perfect it.</h2>
+                    <div class="about-bio">
+                        <p>I am a videographer, photographer, and visual editor — someone who works both behind the lens and behind the screen. With 3 years of experience, I shoot stories and shape them into something people feel.</p>
+                        <p>From golden-hour portraits to cinematic wedding films, from product shoots to travel documentaries — I bring the same obsessive attention to light, composition, and emotion to everything I create.</p>
+                    </div>
+
+                    <div class="skills-timeline">
+                        <div class="skill-item">
+                            <div class="skill-fr">FR.001</div>
+                            <div class="skill-info">
+                                <div class="skill-name">Premiere Pro / Video Editing</div>
+                                <div class="progress-track"><div class="progress-fill" style="--target: 95%"></div></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-fr">FR.002</div>
+                            <div class="skill-info">
+                                <div class="skill-name">Lightroom / Photo Editing</div>
+                                <div class="progress-track"><div class="progress-fill" style="--target: 92%"></div></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-fr">FR.003</div>
+                            <div class="skill-info">
+                                <div class="skill-name">DaVinci Resolve / Color</div>
+                                <div class="progress-track"><div class="progress-fill" style="--target: 85%"></div></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-fr">FR.004</div>
+                            <div class="skill-info">
+                                <div class="skill-name">Videography / Photography</div>
+                                <div class="progress-track"><div class="progress-fill" style="--target: 90%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Section -->
+        <section id="work" class="work">
+            <div class="work-header">
+                <div class="work-header-top">
+                    <span class="work-count-badge">05 PROJECTS</span>
+                    <h2 class="work-title">// SELECTED CUTS</h2>
+                    <p class="work-subtitle">A curated reel of stories told through silence, rhythm, and light.</p>
+                </div>
+                <div class="razor-container">
+                    <svg class="razor-svg" width="40" height="20" viewBox="0 0 40 20">
+                        <path d="M0,10 L40,10 M30,5 L40,10 L30,15" fill="none" stroke="#E8A838" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="work-grid">
+                <div class="work-card large" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-scale="1.02" data-tilt-perspective="1000" data-tilt-glare="false" data-tooltip="PLAY">
+                    <span class="card-index">01</span>
+                    <div class="card-thumb">
+                        <img src="https://picsum.photos/seed/work1/1200/800" alt="Project 1" loading="lazy" decoding="async">
+                        <div class="card-overlay">
+                            <div class="play-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                        <div class="rec-badge">● REC</div>
+                        <div class="card-timecode">00:00:00:00</div>
+                        <div class="card-progress-bar"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta-top">
+                            <span class="category">MUSIC VIDEO</span>
+                            <span class="card-year">2024</span>
+                        </div>
+                        <h3 class="project-name">NEON DREAMS</h3>
+                        <p class="project-desc">A synth-wave visual odyssey blending neon cityscapes with raw emotion.</p>
+                        <div class="project-footer">
+                            <span class="card-duration">⏱ 3:42</span>
+                            <svg class="arrow-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-card tall" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-scale="1.02" data-tilt-perspective="1000" data-tilt-glare="false" data-tooltip="PLAY">
+                    <span class="card-index">02</span>
+                    <div class="card-thumb">
+                        <img src="https://picsum.photos/seed/work2/600/900" alt="Project 2" loading="lazy" decoding="async">
+                        <div class="card-overlay">
+                            <div class="play-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                        <div class="rec-badge">● REC</div>
+                        <div class="card-timecode">00:00:00:00</div>
+                        <div class="card-progress-bar"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta-top">
+                            <span class="category">DOCUMENTARY</span>
+                            <span class="card-year">2023</span>
+                        </div>
+                        <h3 class="project-name">THE SILENT PEAK</h3>
+                        <p class="project-desc">Silence as a language — a climber's journey told in breath and stone.</p>
+                        <div class="project-footer">
+                            <span class="card-duration">⏱ 18:05</span>
+                            <svg class="arrow-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-card medium" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-scale="1.02" data-tilt-perspective="1000" data-tilt-glare="false" data-tooltip="PLAY">
+                    <span class="card-index">03</span>
+                    <div class="card-thumb">
+                        <img src="https://picsum.photos/seed/work3/800/600" alt="Project 3" loading="lazy" decoding="async">
+                        <div class="card-overlay">
+                            <div class="play-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                        <div class="rec-badge">● REC</div>
+                        <div class="card-timecode">00:00:00:00</div>
+                        <div class="card-progress-bar"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta-top">
+                            <span class="category">BRAND FILM</span>
+                            <span class="card-year">2024</span>
+                        </div>
+                        <h3 class="project-name">URBAN KINETICS</h3>
+                        <p class="project-desc">Motion and the city — a kinetic brand identity for the streets.</p>
+                        <div class="project-footer">
+                            <span class="card-duration">⏱ 1:30</span>
+                            <svg class="arrow-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-card large" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-scale="1.02" data-tilt-perspective="1000" data-tilt-glare="false" data-tooltip="PLAY">
+                    <span class="card-index">04</span>
+                    <div class="card-thumb">
+                        <img src="https://picsum.photos/seed/work4/1200/800" alt="Project 4" loading="lazy" decoding="async">
+                        <div class="card-overlay">
+                            <div class="play-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                        <div class="rec-badge">● REC</div>
+                        <div class="card-timecode">00:00:00:00</div>
+                        <div class="card-progress-bar"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta-top">
+                            <span class="category">SHORT FILM</span>
+                            <span class="card-year">2023</span>
+                        </div>
+                        <h3 class="project-name">CHRONOS</h3>
+                        <p class="project-desc">Time fractures — an experimental short on memory and loss.</p>
+                        <div class="project-footer">
+                            <span class="card-duration">⏱ 9:18</span>
+                            <svg class="arrow-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-card full featured" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-scale="1.02" data-tilt-perspective="1000" data-tilt-glare="false" data-tooltip="PLAY">
+                    <span class="card-index">05</span>
+                    <div class="card-thumb">
+                        <img src="https://picsum.photos/seed/work5/1600/600" alt="Project 5" loading="lazy" decoding="async">
+                        <div class="card-overlay">
+                            <div class="play-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                        <div class="rec-badge">● REC</div>
+                        <div class="card-timecode">00:00:00:00</div>
+                        <div class="card-progress-bar"></div>
+                        <div class="featured-badge">FEATURED</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta-top">
+                            <span class="category">FEATURED REEL</span>
+                            <span class="card-year">2024</span>
+                        </div>
+                        <h3 class="project-name">THE ART OF THE CUT</h3>
+                        <p class="project-desc">The complete showreel — every frame a testament to the craft of editing.</p>
+                        <div class="project-footer">
+                            <span class="card-duration">⏱ 2:00</span>
+                            <svg class="arrow-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work-cta">
+                <a href="#contact" class="view-reel-btn">
+                    <span>VIEW FULL REEL</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- Edit Room Section -->
+        <section id="edit-room" class="edit-room">
+            <h2 class="section-title">THE EDIT ROOM</h2>
+            <div class="horizontal-scroll-wrapper">
+                <div class="panel-container">
+                    <div class="panel slate">
+                        <div class="slate-stripe"></div>
+                        <div class="slate-body">
+                            <div class="slate-meta">SCENE 01 / TAKE 01 / ROLL A</div>
+                            <div class="panel-number">01</div>
+                            <h3 class="panel-title">INTAKE</h3>
+                            <p class="panel-desc">We map the story before we touch the timeline. Organization is the foundation of creativity.</p>
+                            <div class="panel-progress"></div>
+                        </div>
+                    </div>
+                    <div class="panel slate">
+                        <div class="slate-stripe"></div>
+                        <div class="slate-body">
+                            <div class="slate-meta">SCENE 02 / TAKE 04 / ROLL B</div>
+                            <div class="panel-number">02</div>
+                            <h3 class="panel-title">ASSEMBLY CUT</h3>
+                            <p class="panel-desc">All the clay on the table. No shapes yet. We find the rhythm in the raw chaos.</p>
+                            <div class="panel-progress"></div>
+                        </div>
+                    </div>
+                    <div class="panel slate">
+                        <div class="slate-stripe"></div>
+                        <div class="slate-body">
+                            <div class="slate-meta">SCENE 03 / TAKE 02 / ROLL A</div>
+                            <div class="panel-number">03</div>
+                            <h3 class="panel-title">FINE CUT</h3>
+                            <p class="panel-desc">Where good editing becomes invisible. Every frame is scrutinized for emotional impact.</p>
+                            <div class="panel-progress"></div>
+                        </div>
+                    </div>
+                    <div class="panel slate">
+                        <div class="slate-stripe"></div>
+                        <div class="slate-body">
+                            <div class="slate-meta">SCENE 04 / TAKE 01 / ROLL C</div>
+                            <div class="panel-number">04</div>
+                            <h3 class="panel-title">COLOR + SOUND</h3>
+                            <p class="panel-desc">The frame breathes. The cut speaks. Final polish to bring the vision to life.</p>
+                            <div class="panel-progress"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <div class="letterbox-top"></div>
+            <div class="testimonial-frame">
+                <div class="subtitles-label">SUBTITLES ON</div>
+                <div class="testimonial-content">
+                    <div class="quote-pill">
+                        <p class="quote">"Pankaj Advania doesn't just edit; he finds the soul of the footage. His sense of timing is unparalleled."</p>
+                    </div>
+                    <div class="attribution">— SARAH JENKINS, CREATIVE DIRECTOR AT VELOCITY</div>
+                </div>
+                <div class="testimonial-nav">
+                    <div class="nav-dot active"></div>
+                    <div class="nav-dot"></div>
+                    <div class="nav-dot"></div>
+                </div>
+            </div>
+            <div class="letterbox-bottom"></div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="contact-header">
+                <h2 class="contact-title">
+                    <span>LET'S MAKE</span><br>
+                    <span class="accent">SOMETHING REAL.</span>
+                </h2>
+                <div class="contact-tagline">RESPONSE TIME: USUALLY WITHIN 24 FRAMES.</div>
+            </div>
+
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" id="name" required>
+                    <label for="name">FULL NAME</label>
+                    <div class="field-border"></div>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" required>
+                    <label for="email">EMAIL ADDRESS</label>
+                    <div class="field-border"></div>
+                </div>
+                <div class="form-group">
+                    <select id="project-type" required>
+                        <option value="" disabled selected></option>
+                        <option value="commercial">COMMERCIAL</option>
+                        <option value="music-video">MUSIC VIDEO</option>
+                        <option value="documentary">DOCUMENTARY</option>
+                        <option value="other">OTHER</option>
+                    </select>
+                    <label for="project-type">PROJECT TYPE</label>
+                    <div class="field-border"></div>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" rows="4" required></textarea>
+                    <label for="message">TELL ME ABOUT YOUR PROJECT</label>
+                    <div class="field-border"></div>
+                </div>
+
+                <button type="submit" class="submit-btn" data-tooltip="Send your message">
+                    <span class="btn-text">SLATE IT →</span>
+                    <div class="clapper-arm"></div>
+                </button>
+            </form>
+
+            <div class="social-links">
+                <a href="#" class="social-icon" data-label="EMAIL" data-tooltip="Email me">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </a>
+                <a href="#" class="social-icon" data-label="INSTAGRAM" data-tooltip="Follow me">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></svg>
+                </a>
+                <a href="#" class="social-icon" data-label="VIMEO" data-tooltip="Watch my work">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16.987 3.66c-1.59.08-3.13.82-4.24 2.02-1.14 1.23-1.86 2.85-2.09 4.55-.11.8.05 1.64.47 2.34.33.54.85.94 1.45 1.13 1.27.4 2.62.07 3.59-.86.94-.9 1.5-2.12 1.62-3.41.08-.85-.05-1.71-.38-2.5-.32-.78-.85-1.45-1.54-1.92-.88-.6-1.96-.86-3.03-.78-1.07.08-2.09.47-2.94 1.12-.85.65-1.5 1.52-1.88 2.51-.38.99-.5 2.06-.35 3.11.15 1.05.57 2.04 1.22 2.87.65.83 1.5 1.48 2.47 1.88.97.4 2.03.58 3.08.52 1.05-.06 2.06-.35 2.97-.85"/></svg>
+                </a>
+                <a href="#" class="social-icon" data-label="LINKEDIN" data-tooltip="Connect with me">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="sprocket-strip"></div>
+            <div class="footer-content">
+                <span data-tooltip="Videographer & Visual Artist">PANKAJ ADVANIA</span>
+                <span class="sep">✦</span>
+                <span data-tooltip="Current Year">2026</span>
+                <span class="sep">✦</span>
+                <span data-tooltip="Handcrafted with passion">CRAFTED FRAME BY FRAME</span>
+            </div>
+            <div class="footer-film-strip">
+                <div class="strip-track">
+                    <div class="strip-frame"></div>
+                    <div class="strip-frame"></div>
+                    <div class="strip-frame"></div>
+                    <div class="strip-frame"></div>
+                    <div class="strip-frame"></div>
+                    <div class="strip-frame"></div>
+                </div>
+                <div class="light-leak"></div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
