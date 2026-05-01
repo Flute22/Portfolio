@@ -41,6 +41,7 @@ export const SKILLS_DATA: SkillGroup[] = [
     ],
     icon: <BarChart3 className="w-6 h-6 text-primary" />
   },
+
   {
     category: "Databases & Languages",
     items: [
@@ -50,6 +51,7 @@ export const SKILLS_DATA: SkillGroup[] = [
     ],
     icon: <Database className="w-6 h-6 text-secondary" />
   },
+
   {
     category: "Data Methodology",
     items: [
@@ -59,6 +61,7 @@ export const SKILLS_DATA: SkillGroup[] = [
     ],
     icon: <Brain className="w-6 h-6 text-accent" />
   },
+
   {
     category: "Core Concepts",
     items: [
@@ -79,6 +82,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     description: "Specialized training in Data Visualization with Excel, SQL, Power BI, and Python. Building end-to-end analytical solutions from ETL to dashboard delivery. Upcoming modules in Machine Learning and Generative AI.",
     skills: ["Power BI", "SQL", "Python", "Excel", "Statistics", "Mathematics", "Machine learning", "Generative AI", "MLOps (Machine Learning Operations)"]
   },
+
   {
     id: "exp-bca",
     role: "Bachelor of Computer Applications (BCA)",
@@ -86,6 +90,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     description: "Built a strong technical foundation in software engineering, database management systems, and algorithm design with a focus on data-centric computing and analytical problem-solving.",
     skills: ["DBMS", "Data Structures", "Algorithms", "System Design", "Web development"]
   },
+
   {
     id: "exp-achievements",
     role: "Achievements & Leadership",
@@ -94,6 +99,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     description: "Translated complex data discrepancies into clear business insights for inventory optimization. Recognized for developing high-efficiency Star Schemas that reduced query latency. Currently pursuing Data Science certification focusing on predictive modeling.",
     skills: ["Star Schema", "Data Modeling", "Business Insights", "Certification"]
   },
+
 ];
 
 export const PROJECTS_DATA: Project[] = [
@@ -115,6 +121,7 @@ export const PROJECTS_DATA: Project[] = [
       { name: 'W4', value: 560 },
     ]
   },
+
   {
     id: "proj-mobile-sql",
     title: "Mobile Manufacturer Sales Trends",
@@ -133,6 +140,7 @@ export const PROJECTS_DATA: Project[] = [
       { name: 'Q4', value: 450 },
     ]
   },
+
   {
     id: "proj-blinkit",
     title: "Blinkit Supply Chain & Sales Dashboard",
@@ -161,6 +169,7 @@ export const CERTIFICATIONS_DATA: Certification[] = [
     skills: ["Power BI", "SQL", "Python", "Machine Learning", "Generative AI", "MLOps", "Statistics"],
     description: "End-to-end professional program covering BI dashboarding, advanced SQL, Python for data analysis, and upcoming modules in Machine Learning and Generative AI."
   },
+  
   {
     id: "cert-bca",
     title: "Bachelor of Computer Applications",

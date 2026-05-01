@@ -127,7 +127,7 @@ export const Hero: React.FC = () => {
         {/* Right Column: Profile Photo (Clean, Professional, Minimalist) */}
         <div className="order-1 md:order-2 flex justify-center md:justify-end relative animate-fade-in" style={{ animationDelay: '0.2s' }}>
           {/* Container with minimal glowing aura */}
-          <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-[400px] md:h-[470px]">
+          <div className="relative w-56 h-[270px] sm:w-64 sm:h-[310px] md:w-[400px] md:h-[470px]">
 
             {/* Soft Ambient Shadow/Glow - Minimalist */}
             <div className="absolute inset-4 bg-primary/20 rounded-[2rem] blur-3xl -z-10 opacity-40" />
@@ -137,7 +137,7 @@ export const Hero: React.FC = () => {
               <img
                 src={HERO_DATA.avatarUrl}
                 alt={HERO_DATA.name}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 brightness-[0.88] contrast-[1.3] saturate-[1.3]"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 brightness-[1] contrast-[1.3] saturate-[1.3]"
                 width={400}
                 height={400}
                 loading="eager"
