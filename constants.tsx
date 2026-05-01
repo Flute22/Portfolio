@@ -7,7 +7,7 @@ export const HERO_DATA = {
   role: "Aspiring Data Scientist",
   tagline: "Turning Complex Data into Actionable Business Intelligence",
   description: "Data-driven professional with a strong foundation in Data Science and Business Intelligence. Proficient in transforming complex, raw datasets into actionable insights using SQL, Power BI, Excel, and Python — from rigorous ETL processing to high-impact visualization.",
-  avatarUrl: 'profile.jpg'
+  avatarUrl: 'profile.jpeg'
 };
 
 export const RESUME_DEFAULT_URL = '/Resume.pdf';
