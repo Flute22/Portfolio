@@ -16,7 +16,7 @@ export const Hero: React.FC = () => {
 
   return (
     <section id="top" aria-labelledby="hero-title" className="pb-2 pt-24 md:pt-28">
-      <div className="mx-auto w-full max-w-page px-6 lg:px-12">
+      <div className="mx-auto w-full max-w-page px-4 sm:px-6 lg:px-8">
         {/* Bento: 1 col on phones, 3 on tablets, 12 on desktop.
             Desktop: headline 8 cols (3 rows) | Currently, 82%, $1.20M stacked in 4 cols,
             then Core stack 8 cols | Resume 4 cols. */}
