@@ -54,8 +54,8 @@ const FOCUSABLE =
   'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 const inputClass = (hasError: boolean) =>
-  `w-full rounded-xl border bg-white px-4 text-[15px] text-ink placeholder:text-muted transition-colors ${
-    hasError ? 'border-red-700' : 'border-line hover:border-accent/50 focus:border-accent'
+  `w-full rounded-xl border bg-surface px-4 text-[15px] text-ink placeholder:text-muted transition-colors ${
+    hasError ? 'border-red-700 dark:border-red-400' : 'border-line hover:border-accent/50 focus:border-accent'
   }`;
 
 interface FieldProps {
@@ -76,7 +76,7 @@ const Field: React.FC<FieldProps> = ({ id, label, optional, error, children }) =
       </label>
       {children({ id, 'aria-invalid': Boolean(error), 'aria-describedby': error ? errorId : undefined })}
       {error && (
-        <p id={errorId} className="mt-1.5 text-sm text-red-700">
+        <p id={errorId} className="mt-1.5 text-sm text-red-700 dark:text-red-400">
           {error}
         </p>
       )}
@@ -212,14 +212,14 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
 
   return (
     <div className="fixed inset-0 z-[100] flex items-end justify-center p-0 sm:items-center sm:p-6" onKeyDown={handleKeyDown}>
-      <div className="absolute inset-0 bg-ink/40" aria-hidden="true" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/50" aria-hidden="true" onClick={onClose} />
 
       <div
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="contact-dialog-title"
-        className="relative max-h-[100dvh] w-full max-w-lg overflow-y-auto rounded-t-card border border-line bg-white sm:rounded-card"
+        className="relative max-h-[100dvh] w-full max-w-lg overflow-y-auto rounded-t-card border border-line bg-surface sm:rounded-card"
       >
         <div className="flex items-start justify-between gap-4 p-6 pb-0 sm:p-8 sm:pb-0">
           <div>
@@ -249,7 +249,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
               <button
                 type="button"
                 onClick={onClose}
-                className="mt-6 inline-flex h-12 items-center rounded-2xl bg-accent px-6 text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
+                className="mt-6 inline-flex h-12 items-center rounded-2xl bg-accent-solid px-6 text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
               >
                 Close
               </button>
@@ -334,7 +334,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
               </div>
 
               {status === 'error' && (
-                <p role="alert" className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+                <p role="alert" className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 dark:border-red-400/30 dark:bg-red-400/10 dark:text-red-300">
                   {errorMessage}
                 </p>
               )}
@@ -342,7 +342,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
               <button
                 type="submit"
                 disabled={submitting}
-                className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-accent px-6 text-[15px] font-medium text-white transition-colors hover:bg-accent-dark disabled:cursor-not-allowed disabled:opacity-70"
+                className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-accent-solid px-6 text-[15px] font-medium text-white transition-colors hover:bg-accent-dark disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {submitting ? (
                   <>

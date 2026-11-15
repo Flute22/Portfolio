@@ -19,7 +19,7 @@ export const Experience: React.FC = () => (
           {/* hollow marker */}
           <span
             aria-hidden="true"
-            className="absolute -left-8 top-7 h-3.5 w-3.5 rounded-full border-2 border-accent bg-white sm:-left-11"
+            className="absolute -left-8 top-7 h-3.5 w-3.5 rounded-full border-2 border-accent bg-page sm:-left-11"
           />
           <ScrollReveal>
             <Card className="p-6 sm:p-7">

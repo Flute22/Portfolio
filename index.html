@@ -5,7 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Khushal Sinhmar | Data Professional Portfolio</title>
     <meta name="theme-color" content="#FFFFFF" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="light dark" />
+    <!-- Set the theme before first paint so there is no light/dark flash.
+         Saved choice wins; otherwise follow the OS. Keep colours in sync with ThemeToggle.tsx. -->
+    <script>
+      (function () {
+        var dark = false;
+        try {
+          var saved = localStorage.getItem('theme');
+          dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        } catch (e) {}
+        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', dark ? '#0A0E0C' : '#FFFFFF');
+      })();
+    </script>
     <meta name="description" content="Khushal Sinhmar — Aspiring Data Scientist specializing in Power BI, SQL, Python, and Excel. Turning complex data into actionable business intelligence." />
     <meta name="keywords" content="Data Scientist, Power BI, SQL, Python, Excel, Business Intelligence, Data Analyst, ETL, Star Schema, DAX" />
     <meta name="author" content="Khushal Sinhmar" />

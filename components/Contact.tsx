@@ -77,7 +77,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenContact }) => (
         <a
           href={RESUME_URL}
           download={RESUME_FILE_NAME}
-          className="mt-6 inline-flex h-12 items-center gap-2.5 rounded-2xl bg-white px-6 text-[15px] font-semibold text-accent-dark transition-colors hover:bg-tint focus-visible:outline-white"
+          className="mt-6 inline-flex h-12 items-center gap-2.5 rounded-2xl bg-white px-6 text-[15px] font-semibold text-[#075E48] transition-colors hover:bg-white/90 focus-visible:outline-white"
         >
           <Download className="h-[18px] w-[18px]" aria-hidden="true" />
           Download resume

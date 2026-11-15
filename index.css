@@ -3,6 +3,38 @@
 @tailwind utilities;
 
 @layer base {
+  /* Light theme (default). Values are space-separated RGB channels. */
+  :root {
+    color-scheme: light;
+    --c-page: 255 255 255; /* #FFFFFF */
+    --c-surface: 255 255 255; /* #FFFFFF */
+    --c-ink: 17 17 17; /* #111111 */
+    --c-body: 75 85 99; /* #4B5563 */
+    --c-muted: 107 114 128; /* #6B7280 */
+    --c-line: 229 231 235; /* #E5E7EB */
+    --c-accent: 10 121 93; /* #0A795D */
+    --c-accent-solid: 10 121 93; /* #0A795D */
+    --c-accent-dark: 7 94 72; /* #075E48 */
+    --c-tint: 237 242 239; /* #EDF2EF */
+    --c-tint-line: 220 228 224; /* #DCE4E0 */
+  }
+
+  /* Dark theme. Applied via <html data-theme="dark"> (see ThemeToggle + index.html). */
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+    --c-page: 10 14 12; /* #0A0E0C */
+    --c-surface: 18 24 21; /* #121815 */
+    --c-ink: 238 241 239; /* #EEF1EF */
+    --c-body: 176 185 180; /* #B0B9B4 */
+    --c-muted: 138 149 143; /* #8A958F */
+    --c-line: 36 45 40; /* #242D28 */
+    --c-accent: 76 201 160; /* #4CC9A0, lighter green for text on dark */
+    --c-accent-solid: 10 121 93; /* #0A795D, white text stays 5.4:1 */
+    --c-accent-dark: 7 94 72; /* #075E48 */
+    --c-tint: 24 34 30; /* #18221E */
+    --c-tint-line: 40 55 49; /* #283731 */
+  }
+
   html {
     scroll-behavior: smooth;
     /* keeps anchored sections clear of the fixed navbar */
@@ -17,7 +49,7 @@
   }
 
   body {
-    @apply bg-white font-sans text-body antialiased;
+    @apply bg-page font-sans text-body antialiased;
   }
 
   h1,
@@ -27,13 +59,13 @@
   }
 
   ::selection {
-    @apply bg-accent text-white;
+    @apply bg-accent-solid text-white;
   }
 
   /* Visible keyboard focus everywhere; override per component where the
      background is green (see Contact). */
   :focus-visible {
-    outline: 2px solid theme("colors.accent.DEFAULT");
+    outline: 2px solid rgb(var(--c-accent));
     outline-offset: 2px;
   }
 }

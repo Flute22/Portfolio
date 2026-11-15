@@ -10,8 +10,8 @@ interface CardProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 const TONES: Record<CardTone, string> = {
-  default: 'bg-white border border-line',
-  accent: 'bg-accent text-white border border-accent',
+  default: 'bg-surface border border-line',
+  accent: 'bg-accent-solid text-white border border-accent-solid',
 };
 
 export const Card: React.FC<CardProps> = ({
