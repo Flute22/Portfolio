@@ -65,17 +65,27 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           </dd>
         </div>
 
-        <div className={cell}>
+        {/* Result: a tinted panel so the outcome stands out from the other three cells. */}
+        <div
+          className={`${cell} mt-3 rounded-xl bg-tint px-4 md:mt-0 md:rounded-none md:px-6 lg:px-5 xl:px-6`}
+        >
           <dt>
             <MonoLabel tone="accent">4 · Result</MonoLabel>
           </dt>
-          <dd className="mt-3">
-            <div className="flex flex-wrap gap-x-8 gap-y-4">
-              {project.metrics.map((m) => (
-                <Metric key={m.label} value={m.value} label={m.label} />
+          <dd className="mt-4">
+            <div className="grid grid-cols-2 gap-3">
+              {project.metrics.map((m, i) => (
+                <Metric
+                  key={m.label}
+                  value={m.value}
+                  label={m.label}
+                  className={i > 0 ? 'border-l border-tint-line pl-3' : ''}
+                />
               ))}
             </div>
-            <p className="mt-5 text-[15px] leading-relaxed text-ink sm:text-base">{project.outcome}</p>
+            <p className="mt-4 border-t border-tint-line pt-4 text-sm leading-relaxed text-ink">
+              {project.outcome}
+            </p>
           </dd>
         </div>
       </dl>
