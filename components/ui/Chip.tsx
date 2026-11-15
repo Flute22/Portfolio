@@ -8,7 +8,7 @@ interface ChipProps {
 /** Small monospace tag used for tools, skills and the core stack. */
 export const Chip: React.FC<ChipProps> = ({ children, className = '' }) => (
   <span
-    className={`inline-flex items-center rounded-chip border border-tint-line bg-tint px-3 py-1.5 font-mono text-[13px] leading-none text-ink ${className}`.trim()}
+    className={`inline-flex items-center rounded-chip border border-tint-line bg-tint px-2.5 py-1.5 font-mono text-xs leading-none text-ink sm:px-3 sm:text-[13px] ${className}`.trim()}
   >
     {children}
   </span>

@@ -12,9 +12,9 @@ export const About: React.FC = () => {
     <Section id="about" labelledBy="about-title">
       <SectionHeader index="01" label="About" title={ABOUT_DATA.title} titleId="about-title" />
 
-      <div className="grid gap-3 md:gap-4 lg:grid-cols-2">
+      <div className="grid gap-5 md:gap-4 lg:grid-cols-2">
         <ScrollReveal className="h-full">
-          <Card className="h-full p-6 sm:p-8 lg:p-10">
+          <Card flat className="h-full border-t-0 px-0 py-0 md:border-t md:p-8 lg:p-10">
             <p className="text-[17px] leading-[1.65] text-ink sm:text-lg">{lead}</p>
             {rest.map((paragraph) => (
               <p key={paragraph} className="mt-5 text-[17px] leading-[1.65] text-muted sm:text-lg">
@@ -24,11 +24,11 @@ export const About: React.FC = () => {
           </Card>
         </ScrollReveal>
 
-        <ol className="grid gap-3 md:gap-4">
+        <ol className="grid md:gap-4">
           {ABOUT_DATA.pillars.map((pillar, i) => (
             <li key={pillar.number}>
               <ScrollReveal delay={i * 60} className="h-full">
-                <Card className="flex h-full gap-5 p-5 sm:gap-7 sm:p-6">
+                <Card flat className="flex h-full gap-5 px-0 py-4 sm:gap-7 md:p-6">
                   <span className="w-6 shrink-0 pt-1 font-mono text-sm text-accent">{pillar.number}</span>
                   <div>
                     <h3 className="text-lg font-semibold tracking-tight">{pillar.title}</h3>

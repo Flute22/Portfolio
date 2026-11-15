@@ -14,10 +14,10 @@ interface SectionProps {
   aside?: React.ReactNode;
 }
 
-/** Page-width container (max 1920px, 16 / 24 / 32px side padding) with consistent vertical rhythm. */
+/** Page-width container (max 1280px, 16 / 24 / 48px side padding) with consistent vertical rhythm. */
 export const Section: React.FC<SectionProps> = ({ id, labelledBy, children, className = '', aside }) => (
-  <section id={id} aria-labelledby={labelledBy} className={`py-8 md:py-10 ${className}`.trim()}>
-    <div className="mx-auto w-full max-w-page px-4 sm:px-6 lg:px-8">
+  <section id={id} aria-labelledby={labelledBy} className={`py-5 md:py-10 ${className}`.trim()}>
+    <div className="mx-auto w-full max-w-page px-4 sm:px-6 lg:px-12">
       {aside ? (
         <div className="lg:grid lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-4">

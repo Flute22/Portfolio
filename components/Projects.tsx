@@ -11,15 +11,16 @@ import { Section } from './ui/Section';
 import { SectionHeader } from './ui/SectionHeader';
 import { ScrollReveal } from './ui/ScrollReveal';
 
-const cell = 'p-5 sm:p-6 lg:p-5 xl:p-6';
+// Phones: no inner box, just full-width rows separated by hairlines.
+const cell = 'py-4 md:p-6 lg:p-5 xl:p-6';
 const bodyText = 'mt-3 text-[15px] leading-relaxed text-ink sm:text-base';
 
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const titleId = `${project.id}-title`;
 
   return (
-    <Card as="article" aria-labelledby={titleId} className="p-4 sm:p-6 lg:p-8">
-      <div className="flex flex-wrap items-start justify-between gap-4 px-1 sm:px-0">
+    <Card as="article" aria-labelledby={titleId} className="p-5 sm:p-6 lg:p-8">
+      <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-[14rem] flex-1">
           <Badge>{project.badge}</Badge>
           <h3 id={titleId} className="mt-4 text-xl font-semibold tracking-tight sm:text-2xl">
@@ -40,7 +41,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       </div>
 
       {/* 2 x 2 detail grid */}
-      <dl className="mt-6 grid grid-cols-1 overflow-hidden rounded-inner border border-line md:grid-cols-2 lg:grid-cols-4">
+      <dl className="mt-4 grid grid-cols-1 border-t border-line md:mt-6 md:grid-cols-2 md:overflow-hidden md:rounded-inner md:border md:border-line lg:grid-cols-4">
         <div className={`${cell} border-b border-line md:border-r lg:border-b-0`}>
           <dt>
             <MonoLabel>1 · Problem</MonoLabel>
