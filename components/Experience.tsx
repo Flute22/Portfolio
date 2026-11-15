@@ -7,9 +7,11 @@ import { SectionHeader } from './ui/SectionHeader';
 import { ScrollReveal } from './ui/ScrollReveal';
 
 export const Experience: React.FC = () => (
-  <Section id="experience" labelledBy="experience-title">
-    <SectionHeader index="04" label="Experience" title={EXPERIENCE_TITLE} titleId="experience-title" />
-
+  <Section
+    id="experience"
+    labelledBy="experience-title"
+    aside={<SectionHeader index="04" label="Experience" title={EXPERIENCE_TITLE} titleId="experience-title" split />}
+  >
     <ol className="relative grid gap-3 pl-8 sm:pl-11 md:gap-4">
       {/* vertical rail */}
       <span aria-hidden="true" className="absolute bottom-0 left-[7px] top-0 w-px bg-line" />

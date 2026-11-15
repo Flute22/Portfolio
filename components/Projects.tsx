@@ -11,7 +11,7 @@ import { Section } from './ui/Section';
 import { SectionHeader } from './ui/SectionHeader';
 import { ScrollReveal } from './ui/ScrollReveal';
 
-const cell = 'p-5 sm:p-6';
+const cell = 'p-5 sm:p-6 lg:p-5 xl:p-6';
 const bodyText = 'mt-3 text-[15px] leading-relaxed text-ink sm:text-base';
 
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
@@ -40,15 +40,15 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       </div>
 
       {/* 2 x 2 detail grid */}
-      <dl className="mt-6 grid grid-cols-1 overflow-hidden rounded-inner border border-line md:grid-cols-2">
-        <div className={`${cell} border-b border-line md:border-r`}>
+      <dl className="mt-6 grid grid-cols-1 overflow-hidden rounded-inner border border-line md:grid-cols-2 lg:grid-cols-4">
+        <div className={`${cell} border-b border-line md:border-r lg:border-b-0`}>
           <dt>
             <MonoLabel>1 · Problem</MonoLabel>
           </dt>
           <dd className={bodyText}>{project.problem}</dd>
         </div>
 
-        <div className={`${cell} border-b border-line`}>
+        <div className={`${cell} border-b border-line lg:border-b-0 lg:border-r`}>
           <dt>
             <MonoLabel>2 · Approach</MonoLabel>
           </dt>

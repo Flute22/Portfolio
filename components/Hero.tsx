@@ -16,11 +16,13 @@ export const Hero: React.FC = () => {
 
   return (
     <section id="top" aria-labelledby="hero-title" className="pb-2 pt-24 md:pt-28">
-      <div className="mx-auto w-full max-w-page px-5 sm:px-8">
-        {/* Bento: 1 col on phones, 3 on tablets, 4 on desktop */}
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4">
+      <div className="mx-auto w-full max-w-page px-6 lg:px-12">
+        {/* Bento: 1 col on phones, 3 on tablets, 12 on desktop.
+            Desktop: headline 8 cols (3 rows) | Currently, 82%, $1.20M stacked in 4 cols,
+            then Core stack 8 cols | Resume 4 cols. */}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-12">
           {/* Headline */}
-          <ScrollReveal className="sm:col-span-3 lg:col-span-2 lg:row-span-2">
+          <ScrollReveal className="sm:col-span-3 lg:col-span-8 lg:col-start-1 lg:row-span-3 lg:row-start-1">
             <Card className="flex h-full flex-col p-6 sm:p-8 lg:p-10">
               <div className="flex items-center gap-2.5">
                 <Dot />
@@ -29,7 +31,7 @@ export const Hero: React.FC = () => {
 
               <h1
                 id="hero-title"
-                className="mt-8 max-w-[20ch] text-balance text-[2.25rem] font-semibold leading-[1.02] tracking-[-0.035em] sm:mt-10 sm:text-[2.625rem] lg:mt-14 lg:text-[3rem]"
+                className="mt-8 max-w-[20ch] text-balance text-[2.25rem] font-semibold leading-[1.02] tracking-[-0.035em] sm:mt-10 sm:text-[2.625rem] lg:mt-14 lg:text-[3.5rem] xl:text-[4rem]"
               >
                 {headline}
               </h1>
@@ -57,7 +59,7 @@ export const Hero: React.FC = () => {
           </ScrollReveal>
 
           {/* Currently */}
-          <ScrollReveal delay={60} className="sm:col-span-3 lg:col-span-2">
+          <ScrollReveal delay={60} className="sm:col-span-3 lg:col-span-4 lg:col-start-9 lg:row-start-1">
             <Card className="flex h-full flex-col justify-center p-6 sm:p-8">
               <div className="flex items-center gap-2.5">
                 <Dot />
@@ -73,7 +75,7 @@ export const Hero: React.FC = () => {
           </ScrollReveal>
 
           {/* 82% */}
-          <ScrollReveal delay={120} className="sm:col-span-3 lg:col-span-2">
+          <ScrollReveal delay={120} className="sm:col-span-3 lg:col-span-4 lg:col-start-9 lg:row-start-2">
             <Card tone="accent" className="flex h-full flex-col justify-center p-6 sm:p-8">
               <p className="text-[3.5rem] font-semibold leading-none tracking-[-0.04em] sm:text-6xl">
                 {featuredStat.value}
@@ -85,7 +87,7 @@ export const Hero: React.FC = () => {
           </ScrollReveal>
 
           {/* Core stack */}
-          <ScrollReveal delay={60} className="sm:col-span-2 lg:col-span-2">
+          <ScrollReveal delay={60} className="sm:col-span-2 lg:col-span-8 lg:col-start-1 lg:row-start-4">
             <Card className="h-full p-6 sm:p-8">
               <MonoLabel>Core stack</MonoLabel>
               <ChipList items={stack} label="Core stack" className="mt-4" />
@@ -93,7 +95,7 @@ export const Hero: React.FC = () => {
           </ScrollReveal>
 
           {/* $1.20M */}
-          <ScrollReveal delay={120} className="sm:col-span-1">
+          <ScrollReveal delay={120} className="sm:col-span-1 lg:col-span-4 lg:col-start-9 lg:row-start-3">
             <Card className="flex h-full flex-col justify-between gap-6 p-6 sm:p-7">
               <p className="text-[2rem] font-semibold leading-none tracking-[-0.03em] text-ink sm:text-4xl">
                 {secondaryStat.value}
@@ -103,7 +105,7 @@ export const Hero: React.FC = () => {
           </ScrollReveal>
 
           {/* Resume */}
-          <ScrollReveal delay={180} className="sm:col-span-3 lg:col-span-1">
+          <ScrollReveal delay={180} className="sm:col-span-3 lg:col-span-4 lg:col-start-9 lg:row-start-4">
             <Card className="h-full p-0">
               <a
                 href={RESUME_URL}

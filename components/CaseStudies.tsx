@@ -8,10 +8,20 @@ import { SectionHeader } from './ui/SectionHeader';
 import { ScrollReveal } from './ui/ScrollReveal';
 
 export const CaseStudies: React.FC = () => (
-  <Section id="case-studies" labelledBy="case-studies-title">
-    <SectionHeader index="05" label="Case studies" title={CASE_STUDIES_TITLE} titleId="case-studies-title" />
-
-    <ul className="grid gap-3 md:gap-4 lg:grid-cols-2">
+  <Section
+    id="case-studies"
+    labelledBy="case-studies-title"
+    aside={
+      <SectionHeader
+        index="05"
+        label="Case studies"
+        title={CASE_STUDIES_TITLE}
+        titleId="case-studies-title"
+        split
+      />
+    }
+  >
+    <ul className="grid gap-3 md:gap-4">
       {CASE_STUDIES_DATA.map((study, i) => {
         const titleId = `${study.id}-title`;
         return (
