@@ -3,7 +3,7 @@ import { SITE_NAME } from '../constants';
 
 export const Footer: React.FC = () => (
   <footer className="border-t border-line">
-    <div className="mx-auto flex w-full max-w-page flex-wrap items-center justify-between gap-3 px-6 py-8 lg:px-12">
+    <div className="mx-auto flex w-full max-w-page flex-wrap items-center justify-between gap-3 px-4 py-8 sm:px-6 lg:px-8">
       <p className="text-sm text-muted">
         © {new Date().getFullYear()} {SITE_NAME}. Built with precision and data.
       </p>
