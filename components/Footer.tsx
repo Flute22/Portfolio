@@ -9,9 +9,15 @@ export const Footer: React.FC = () => (
       </span>
       <a
         href="#top"
-        className="flex min-h-11 items-center font-mono text-[13px] font-medium text-muted no-underline transition-colors hover:text-ink"
+        className="group flex min-h-11 items-center font-mono text-[13px] font-medium text-muted no-underline transition-colors hover:text-ink"
       >
-        Back to top <span aria-hidden="true">&nbsp;↑</span>
+        Back to top{' '}
+        <span
+          aria-hidden="true"
+          className="inline-block transition-transform duration-200 group-hover:-translate-y-1"
+        >
+          &nbsp;↑
+        </span>
       </a>
     </div>
   </footer>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { AnimatedWords } from './AnimatedWords';
 import { MonoLabel } from './MonoLabel';
 import { Reveal } from './Reveal';
 
@@ -15,18 +16,21 @@ interface SectionHeaderProps {
 }
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({ index, label, title, titleId, actions }) => (
-  <Reveal className="mb-[clamp(24px,4vw,40px)] flex flex-wrap items-end justify-between gap-5">
+  <div className="mb-[clamp(24px,4vw,40px)] flex flex-wrap items-end justify-between gap-5">
     <div className="flex flex-col gap-3">
-      <MonoLabel tone="accent">
-        {index} / {label}
-      </MonoLabel>
-      <h2
+      <Reveal className="flex">
+        <MonoLabel tone="accent">
+          {index} / {label}
+        </MonoLabel>
+      </Reveal>
+      <AnimatedWords
+        as="h2"
         id={titleId}
+        text={title}
+        baseDelay={80}
         className="m-0 text-balance text-[clamp(32px,4.4vw,52px)] font-semibold leading-[1.05] tracking-[-0.03em]"
-      >
-        {title}
-      </h2>
+      />
     </div>
-    {actions}
-  </Reveal>
+    {actions && <Reveal delay={200}>{actions}</Reveal>}
+  </div>
 );

@@ -139,6 +139,33 @@
 }
 
 @layer components {
+  /*
+   * Spotlight: a soft green glow that follows the pointer over a card.
+   * Card.tsx writes --mx / --my on pointermove. Hover-capable devices only.
+   */
+  .spotlight {
+    position: relative;
+  }
+  .spotlight::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background: radial-gradient(
+      380px circle at var(--mx, 50%) var(--my, 50%),
+      rgb(var(--c-accent) / 0.1),
+      transparent 65%
+    );
+  }
+  @media (hover: hover) {
+    .spotlight:hover::before {
+      opacity: 1;
+    }
+  }
+
   /* Page container: max 1320px, side padding scales 16px -> 40px with the viewport. */
   .container-page {
     margin-inline: auto;

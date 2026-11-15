@@ -2,6 +2,7 @@ import React from 'react';
 import { CASE_STUDIES_DATA, CASE_STUDIES_TITLE } from '../constants';
 import { Card } from './ui/Card';
 import { MonoLabel } from './ui/MonoLabel';
+import { Reveal } from './ui/Reveal';
 import { Section } from './ui/Section';
 import { SectionHeader } from './ui/SectionHeader';
 
@@ -31,13 +32,18 @@ export const CaseStudies: React.FC = () => (
             <div className="flex flex-col gap-3.5 border-t border-line pt-[18px]">
               <MonoLabel as="h4">Key insights</MonoLabel>
               <ol className="m-0 flex list-none flex-col gap-3 p-0">
-                {study.insights.map((insight) => (
-                  <li key={insight} className="grid grid-cols-[24px_minmax(0,1fr)] gap-2.5 text-[15px] leading-[1.55]">
+                {study.insights.map((insight, j) => (
+                  <Reveal
+                    key={insight}
+                    as="li"
+                    delay={j * 140}
+                    className="grid grid-cols-[24px_minmax(0,1fr)] gap-2.5 text-[15px] leading-[1.55]"
+                  >
                     <span aria-hidden="true" className="text-[15px] font-semibold leading-[1.55] text-accent">
                       →
                     </span>
                     <span>{insight}</span>
-                  </li>
+                  </Reveal>
                 ))}
               </ol>
             </div>

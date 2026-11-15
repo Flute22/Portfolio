@@ -5,6 +5,7 @@ import type { Project, ProjectCategory } from '../types';
 import { Badge } from './ui/Badge';
 import { Card } from './ui/Card';
 import { ChipList } from './ui/Chip';
+import { CountUp } from './ui/CountUp';
 import { MonoLabel } from './ui/MonoLabel';
 import { Section } from './ui/Section';
 import { SectionHeader } from './ui/SectionHeader';
@@ -66,11 +67,14 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`View ${project.title} on GitHub (opens in new tab)`}
-          className="flex min-h-11 items-center gap-2 rounded-xl border border-line2 px-4 text-[15px] font-medium text-ink no-underline transition-colors hover:border-accent"
+          className="group flex min-h-11 items-center gap-2 rounded-xl border border-line2 px-4 text-[15px] font-medium text-ink no-underline transition-colors hover:border-accent"
         >
           <Github className="h-[17px] w-[17px]" aria-hidden="true" />
           GitHub
-          <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+          <ArrowUpRight
+            className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            aria-hidden="true"
+          />
         </a>
       </header>
 
@@ -95,7 +99,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
               <div key={metric.label} className="flex flex-col-reverse gap-1">
                 <dt className="text-[13px] text-muted">{metric.label}</dt>
                 <dd className="m-0 text-[28px] font-semibold leading-none tracking-[-0.02em] text-accent">
-                  {metric.value}
+                  <CountUp value={metric.value} />
                 </dd>
               </div>
             ))}
