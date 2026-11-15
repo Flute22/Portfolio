@@ -16,7 +16,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Instrument Sans"', "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ['"Bricolage Grotesque"', "system-ui", "sans-serif"],
         mono: [
           '"JetBrains Mono"',
           "ui-monospace",
@@ -27,28 +27,22 @@ export default {
       },
       colors: {
         page: token("page"), // page background
-        surface: token("surface"), // cards, inputs, dialog
-        ink: token("ink"), // headings
-        body: token("body"), // body copy
-        muted: token("muted"), // secondary / meta text
+        surface: token("surface"), // cards ("tiles"), inputs
+        chip: token("chip"), // chips, badges, icon wells
         line: token("line"), // 1px borders
+        line2: token("line2"), // stronger borders (buttons, hover)
+        ink: token("ink"), // primary text
+        muted: token("muted"), // secondary text
+        danger: token("danger"), // form errors
         accent: {
-          DEFAULT: token("accent"), // green used as text, borders, dots
-          solid: token("accent-solid"), // green used as a fill under white text
-          dark: token("accent-dark"), // hover state for solid fills
+          DEFAULT: token("accent"), // green as text, borders, primary-button fill
+          on: token("on-accent"), // text on an accent fill
         },
-        tint: {
-          DEFAULT: token("tint"), // chip / badge background
-          line: token("tint-line"), // chip border
-        },
-      },
-      borderRadius: {
-        card: "1.5rem", // 24px
-        inner: "1rem", // 16px
-        chip: "0.5rem", // 8px
+        fill: token("fill"), // solid green panels (white text on top)
+        nav: "var(--nav)", // translucent navbar background
       },
       maxWidth: {
-        page: "1280px",
+        page: "1320px",
       },
     },
   },

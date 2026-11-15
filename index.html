@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Khushal Sinhmar | Data Professional Portfolio</title>
-    <meta name="theme-color" content="#FFFFFF" />
+    <meta name="theme-color" content="#0C0F0E" />
     <meta name="color-scheme" content="light dark" />
     <!-- Set the theme before first paint so there is no light/dark flash.
          Saved choice wins; otherwise follow the OS. Keep colours in sync with ThemeToggle.tsx. -->
@@ -17,7 +17,7 @@
         } catch (e) {}
         document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
         var meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute('content', dark ? '#0A0E0C' : '#FFFFFF');
+        if (meta) meta.setAttribute('content', dark ? '#0C0F0E' : '#F3F5F4');
       })();
     </script>
     <meta name="description" content="Khushal Sinhmar — Aspiring Data Scientist specializing in Power BI, SQL, Python, and Excel. Turning complex data into actionable business intelligence." />
@@ -54,22 +54,9 @@
       "knowsAbout": ["Power BI", "SQL", "Python", "Excel", "Data Science", "ETL", "Business Intelligence"]
     }
     </script>
-    <!-- Preconnect to Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Non-render-blocking Google Fonts -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      />
-    </noscript>
+    <!-- Self-hosted fonts (see @font-face in index.css). Preload the two used above the fold. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/bricolage-grotesque-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/jetbrains-mono-latin.woff2" crossorigin />
   </head>
   <body>
     <div id="root"></div>

@@ -5,10 +5,10 @@ type Theme = 'light' | 'dark';
 
 const STORAGE_KEY = 'theme';
 /** Keep in sync with the inline script in index.html. */
-const BROWSER_CHROME: Record<Theme, string> = { light: '#FFFFFF', dark: '#0A0E0C' };
+const BROWSER_CHROME: Record<Theme, string> = { light: '#F3F5F4', dark: '#0C0F0E' };
 
 const currentTheme = (): Theme =>
-  document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
 
 const hasSavedChoice = (): boolean => {
   try {
@@ -50,15 +50,17 @@ export const ThemeToggle: React.FC = () => {
   }, [apply]);
 
   const isDark = theme === 'dark';
+  const label = isDark ? 'Switch to light theme' : 'Switch to dark theme';
 
   return (
     <button
       type="button"
       onClick={() => apply(isDark ? 'light' : 'dark', true)}
-      aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-ink transition-colors hover:bg-ink/5 sm:h-11 sm:w-11 sm:border sm:border-line sm:hover:border-accent/50 sm:hover:bg-transparent"
+      aria-label={label}
+      title={label}
+      className="grid h-11 w-11 cursor-pointer place-items-center rounded-full border border-line bg-surface text-ink transition-colors hover:border-line2"
     >
-      {isDark ? <Sun className="h-5 w-5" aria-hidden="true" /> : <Moon className="h-5 w-5" aria-hidden="true" />}
+      {isDark ? <Sun className="h-[18px] w-[18px]" aria-hidden="true" /> : <Moon className="h-[18px] w-[18px]" aria-hidden="true" />}
     </button>
   );
 };

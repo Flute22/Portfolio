@@ -1,71 +1,148 @@
+/*
+ * Self-hosted fonts (variable woff2, from the reference design): no third-party requests.
+ * Bricolage Grotesque has weight + optical-size axes; the optical size is what makes large
+ * headings look tighter, so these exact files are used instead of Google's static instance.
+ */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 400 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('/fonts/bricolage-grotesque-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 400 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('/fonts/bricolage-grotesque-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  /* Light theme (default). Values are space-separated RGB channels. */
-  :root {
-    color-scheme: light;
-    --c-page: 255 255 255; /* #FFFFFF */
-    --c-surface: 255 255 255; /* #FFFFFF */
-    --c-ink: 17 17 17; /* #111111 */
-    --c-body: 75 85 99; /* #4B5563 */
-    --c-muted: 107 114 128; /* #6B7280 */
-    --c-line: 229 231 235; /* #E5E7EB */
-    --c-accent: 10 121 93; /* #0A795D */
-    --c-accent-solid: 10 121 93; /* #0A795D */
-    --c-accent-dark: 7 94 72; /* #075E48 */
-    --c-tint: 237 242 239; /* #EDF2EF */
-    --c-tint-line: 220 228 224; /* #DCE4E0 */
-  }
-
-  /* Dark theme. Applied via <html data-theme="dark"> (see ThemeToggle + index.html). */
+  /* Dark theme is the default. Values are space-separated RGB channels. */
+  :root,
   :root[data-theme='dark'] {
     color-scheme: dark;
-    --c-page: 10 14 12; /* #0A0E0C */
-    --c-surface: 18 24 21; /* #121815 */
-    --c-ink: 238 241 239; /* #EEF1EF */
-    --c-body: 176 185 180; /* #B0B9B4 */
-    --c-muted: 138 149 143; /* #8A958F */
-    --c-line: 36 45 40; /* #242D28 */
-    --c-accent: 76 201 160; /* #4CC9A0, lighter green for text on dark */
-    --c-accent-solid: 10 121 93; /* #0A795D, white text stays 5.4:1 */
-    --c-accent-dark: 7 94 72; /* #075E48 */
-    --c-tint: 24 34 30; /* #18221E */
-    --c-tint-line: 40 55 49; /* #283731 */
+    --c-page: 12 15 14; /* #0C0F0E */
+    --c-surface: 20 25 23; /* #141917 */
+    --c-chip: 28 35 32; /* #1C2320 */
+    --c-line: 35 42 39; /* #232A27 */
+    --c-line2: 46 54 51; /* #2E3633 */
+    --c-ink: 236 239 237; /* #ECEFED */
+    --c-muted: 154 165 160; /* #9AA5A0 */
+    --c-accent: 52 196 154; /* #34C49A */
+    --c-on-accent: 6 17 13; /* #06110D */
+    --c-fill: 11 122 94; /* #0B7A5E */
+    --c-danger: 255 138 122; /* #FF8A7A */
+    --nav: rgba(12, 15, 14, 0.82);
+  }
+
+  /* Light theme: used when the OS prefers light (and nothing is saved), or when chosen. */
+  :root[data-theme='light'] {
+    color-scheme: light;
+    --c-page: 243 245 244; /* #F3F5F4 */
+    --c-surface: 255 255 255; /* #FFFFFF */
+    --c-chip: 238 242 240; /* #EEF2F0 */
+    --c-line: 221 227 224; /* #DDE3E0 */
+    --c-line2: 195 204 200; /* #C3CCC8 */
+    --c-ink: 15 20 18; /* #0F1412 */
+    --c-muted: 86 96 92; /* #56605C */
+    --c-accent: 11 122 94; /* #0B7A5E */
+    --c-on-accent: 255 255 255; /* #FFFFFF */
+    --c-fill: 11 122 94; /* #0B7A5E */
+    --c-danger: 180 35 24; /* #B42318 */
+    --nav: rgba(243, 245, 244, 0.85);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme]) {
+      color-scheme: light;
+      --c-page: 243 245 244;
+      --c-surface: 255 255 255;
+      --c-chip: 238 242 240;
+      --c-line: 221 227 224;
+      --c-line2: 195 204 200;
+      --c-ink: 15 20 18;
+      --c-muted: 86 96 92;
+      --c-accent: 11 122 94;
+      --c-on-accent: 255 255 255;
+      --c-fill: 11 122 94;
+      --c-danger: 180 35 24;
+      --nav: rgba(243, 245, 244, 0.85);
+    }
   }
 
   html {
     scroll-behavior: smooth;
-    /* keeps anchored sections clear of the fixed navbar */
-    scroll-padding-top: 5rem;
     -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-page font-sans text-ink antialiased;
+    line-height: normal;
+    transition:
+      background-color 0.25s,
+      color 0.25s;
+  }
+
+  ::selection {
+    @apply bg-fill text-white;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--c-accent));
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgb(var(--c-muted));
+    opacity: 0.7;
   }
 
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
+    *,
+    *::before,
+    *::after {
+      transition: none !important;
+      animation: none !important;
+    }
   }
+}
 
-  body {
-    @apply bg-page font-sans text-body antialiased;
-  }
-
-  h1,
-  h2,
-  h3 {
-    @apply text-ink;
-  }
-
-  ::selection {
-    @apply bg-accent-solid text-white;
-  }
-
-  /* Visible keyboard focus everywhere; override per component where the
-     background is green (see Contact). */
-  :focus-visible {
-    outline: 2px solid rgb(var(--c-accent));
-    outline-offset: 2px;
+@layer components {
+  /* Page container: max 1320px, side padding scales 16px -> 40px with the viewport. */
+  .container-page {
+    margin-inline: auto;
+    max-width: 1320px;
+    padding-inline: clamp(16px, 4vw, 40px);
   }
 }

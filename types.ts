@@ -45,8 +45,12 @@ export interface ProjectMetric {
   label: string;
 }
 
+export type ProjectCategory = 'BI' | 'SQL' | 'Excel';
+
 export interface Project {
   id: string;
+  /** Used by the filter tabs */
+  category: ProjectCategory;
   /** Badge text, e.g. "Power BI" */
   badge: string;
   title: string;

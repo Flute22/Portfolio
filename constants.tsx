@@ -5,6 +5,7 @@ import type {
   HeroData,
   NavLink,
   Project,
+  ProjectCategory,
   SkillGroup,
   SocialLink,
 } from './types';
@@ -12,14 +13,15 @@ import type {
 export const SITE_NAME = 'Khushal Sinhmar';
 export const CONTACT_EMAIL = 'khushalsinhmar@gmail.com';
 export const RESUME_URL = '/Resume.pdf';
-export const RESUME_FILE_NAME = 'Khushal-Sinhmar-Resume.pdf';
+export const RESUME_FILE_NAME = 'Khushal_Sinhmar_Resume.pdf';
 
-/** Max five links. Order matches the page. */
+/** Order matches the page. */
 export const NAV_LINKS: NavLink[] = [
   { label: 'About', id: 'about' },
   { label: 'Skills', id: 'skills' },
-  { label: 'Work', id: 'projects' },
+  { label: 'Projects', id: 'projects' },
   { label: 'Experience', id: 'experience' },
+  { label: 'Case Studies', id: 'case-studies' },
   { label: 'Contact', id: 'contact' },
 ];
 
@@ -145,9 +147,18 @@ export const SKILLS_DATA: SkillGroup[] = [
 
 export const PROJECTS_TITLE = 'Selected work';
 
+/** Filter tabs above the project list. */
+export const PROJECT_FILTERS: { key: 'All' | ProjectCategory; label: string }[] = [
+  { key: 'All', label: 'All' },
+  { key: 'BI', label: 'Power BI' },
+  { key: 'SQL', label: 'SQL' },
+  { key: 'Excel', label: 'Excel' },
+];
+
 export const PROJECTS_DATA: Project[] = [
   {
     id: 'proj-retail-bi',
+    category: 'BI',
     badge: 'Power BI',
     title: 'Retail Business Intelligence Dashboard',
     link: 'https://github.com/Flute22/Power-BI-Dashboards',
@@ -164,6 +175,7 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: 'proj-mobile-sql',
+    category: 'SQL',
     badge: 'SQL',
     title: 'Mobile Manufacturer Sales Trends',
     link: 'https://github.com/Flute22/SQL_Mastery/tree/main/Mobile%20manufactured%20data%20analysis',
@@ -181,6 +193,7 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: 'proj-blinkit',
+    category: 'Excel',
     badge: 'Excel',
     title: 'Blinkit Supply Chain & Sales Dashboard',
     link: 'https://github.com/Flute22/Excel-Dashboards',
