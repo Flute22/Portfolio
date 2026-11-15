@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { NAV_LINKS, SITE_NAME } from '../constants';
+import { ThemeToggle } from './ThemeToggle';
 
 /** Every observed section; ids that are not in NAV_LINKS simply clear the highlight. */
 const OBSERVED_IDS = ['top', 'about', 'skills', 'projects', 'experience', 'case-studies', 'contact'];
@@ -69,12 +70,12 @@ export const Navbar: React.FC = () => {
 
   const linkClass = (id: string) =>
     `rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-      activeId === id ? 'bg-tint text-accent' : 'text-body hover:bg-black/[0.04] hover:text-ink'
+      activeId === id ? 'bg-tint text-accent' : 'text-body hover:bg-ink/5 hover:text-ink'
     }`;
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b bg-white transition-colors duration-200 ${
+      className={`fixed inset-x-0 top-0 z-50 border-b bg-page transition-colors duration-200 ${
         scrolled || menuOpen ? 'border-line' : 'border-transparent'
       }`}
     >
@@ -84,6 +85,7 @@ export const Navbar: React.FC = () => {
           {SITE_NAME}
         </a>
 
+        <div className="flex items-center gap-1 sm:gap-2">
         {/* Desktop links */}
         <ul className="hidden items-center gap-1 md:flex">
           {NAV_LINKS.map((link) => (
@@ -99,6 +101,8 @@ export const Navbar: React.FC = () => {
           ))}
         </ul>
 
+        <ThemeToggle />
+
         {/* Mobile toggle */}
         <button
           ref={toggleRef}
@@ -111,10 +115,11 @@ export const Navbar: React.FC = () => {
         >
           {menuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
         </button>
+        </div>
       </nav>
 
       {/* Mobile panel */}
-      <div id="mobile-menu" hidden={!menuOpen} className="border-t border-line bg-white md:hidden">
+      <div id="mobile-menu" hidden={!menuOpen} className="border-t border-line bg-page md:hidden">
         <ul className="mx-auto flex max-w-page flex-col gap-1 px-5 py-3 sm:px-8">
           {NAV_LINKS.map((link) => (
             <li key={link.id}>

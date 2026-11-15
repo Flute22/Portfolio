@@ -41,14 +41,14 @@ export const Hero: React.FC = () => {
               <div className="mt-auto flex flex-wrap gap-3 pt-8">
                 <a
                   href="#projects"
-                  className="inline-flex h-12 items-center gap-2 rounded-2xl bg-accent px-6 text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
+                  className="inline-flex h-12 items-center gap-2 rounded-2xl bg-accent-solid px-6 text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
                 >
                   {primaryCta}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <a
                   href="#contact"
-                  className="inline-flex h-12 items-center rounded-2xl border border-line bg-white px-6 text-[15px] font-medium text-ink transition-colors hover:border-accent/50"
+                  className="inline-flex h-12 items-center rounded-2xl border border-line bg-surface px-6 text-[15px] font-medium text-ink transition-colors hover:border-accent/50"
                 >
                   {secondaryCta}
                 </a>
