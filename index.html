@@ -1,10 +1,11 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Khushal Sinhmar | Data Professional Portfolio</title>
-    <meta name="theme-color" content="#020617" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <meta name="color-scheme" content="light" />
     <meta name="description" content="Khushal Sinhmar — Aspiring Data Scientist specializing in Power BI, SQL, Python, and Excel. Turning complex data into actionable business intelligence." />
     <meta name="keywords" content="Data Scientist, Power BI, SQL, Python, Excel, Business Intelligence, Data Analyst, ETL, Star Schema, DAX" />
     <meta name="author" content="Khushal Sinhmar" />
@@ -42,42 +43,22 @@
     <!-- Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Preload LCP image -->
-    <link rel="preload" as="image" href="/profile.jpg" fetchpriority="high" />
     <!-- Non-render-blocking Google Fonts -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       media="print"
       onload="this.media='all'"
     />
     <noscript>
       <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       />
     </noscript>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
-    <script>
-      // Apply dark-theme filters to favicon
-      window.addEventListener('load', function() {
-        var img = new Image();
-        img.crossOrigin = 'anonymous';
-        img.onload = function() {
-          var c = document.createElement('canvas');
-          c.width = img.width;
-          c.height = img.height;
-          var ctx = c.getContext('2d');
-          ctx.filter = 'brightness(0.88) contrast(1.70) saturate(0.9)';
-          ctx.drawImage(img, 0, 0);
-          var link = document.querySelector("link[rel='icon']");
-          if (link) link.href = c.toDataURL('image/png');
-        };
-        img.src = '/favicon.png';
-      });
-    </script>
   </body>
 </html>
