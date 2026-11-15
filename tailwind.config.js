@@ -48,7 +48,7 @@ export default {
         chip: "0.5rem", // 8px
       },
       maxWidth: {
-        page: "1120px",
+        page: "1280px",
       },
     },
   },

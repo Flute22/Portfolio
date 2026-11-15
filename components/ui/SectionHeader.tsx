@@ -9,10 +9,12 @@ interface SectionHeaderProps {
   title: string;
   /** id for the <h2>, used by the parent section's aria-labelledby */
   titleId: string;
+  /** Used inside Section's `aside`: no bottom margin on desktop, where it sits beside the content. */
+  split?: boolean;
 }
 
-export const SectionHeader: React.FC<SectionHeaderProps> = ({ index, label, title, titleId }) => (
-  <header className="mb-8 md:mb-10">
+export const SectionHeader: React.FC<SectionHeaderProps> = ({ index, label, title, titleId, split = false }) => (
+  <header className={`mb-8 md:mb-10 ${split ? 'lg:mb-0' : ''}`.trim()}>
     <MonoLabel tone="accent">
       {index} / {label}
     </MonoLabel>

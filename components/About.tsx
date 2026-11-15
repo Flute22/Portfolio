@@ -12,7 +12,7 @@ export const About: React.FC = () => {
     <Section id="about" labelledBy="about-title">
       <SectionHeader index="01" label="About" title={ABOUT_DATA.title} titleId="about-title" />
 
-      <div className="grid gap-3 md:gap-4 lg:grid-cols-[1.15fr_1fr]">
+      <div className="grid gap-3 md:gap-4 lg:grid-cols-2">
         <ScrollReveal className="h-full">
           <Card className="h-full p-6 sm:p-8 lg:p-10">
             <p className="text-[17px] leading-[1.65] text-ink sm:text-lg">{lead}</p>
