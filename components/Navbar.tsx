@@ -1,140 +1,135 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, Terminal } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Menu, X } from 'lucide-react';
+import { NAV_LINKS, SITE_NAME } from '../constants';
 
-interface NavbarProps {
-  onOpenContact: () => void;
-  onOpenResumeManager?: () => void;
-}
+/** Every observed section; ids that are not in NAV_LINKS simply clear the highlight. */
+const OBSERVED_IDS = ['top', 'about', 'skills', 'projects', 'experience', 'case-studies', 'contact'];
+const NAV_IDS = new Set(NAV_LINKS.map((l) => l.id));
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenResumeManager }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const clickCountRef = useRef(0);
-  const clickTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+export const Navbar: React.FC = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
+  // Border appears once the page has scrolled; last section wins at the very bottom.
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      if (atBottom) setActiveId('contact');
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    clickCountRef.current += 1;
-    if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
-    if (clickCountRef.current >= 3) {
-      e.preventDefault();
-      clickCountRef.current = 0;
-      onOpenResumeManager?.();
-      return;
-    }
-    clickTimerRef.current = setTimeout(() => {
-      clickCountRef.current = 0;
-    }, 600);
-  };
+  // Scroll-spy: a thin band around 40% of the viewport decides the active section.
+  useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(NAV_IDS.has(entry.target.id) ? entry.target.id : null);
+          }
+        });
+      },
+      { rootMargin: '-40% 0px -55% 0px' },
+    );
+    OBSERVED_IDS.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setIsMobileMenuOpen(false);
+  // Escape closes the mobile menu and hands focus back to the toggle.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMenuOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [menuOpen]);
 
-    if (href === '#') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      // Reset URL to pathname (remove hash) without page reload
-      window.history.pushState(null, '', window.location.pathname);
-      return;
-    }
+  // Close the mobile menu if the viewport grows past the breakpoint.
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const onChange = (e: MediaQueryListEvent) => {
+      if (e.matches) setMenuOpen(false);
+    };
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
 
-    const element = document.querySelector(href);
-    if (element) {
-      // Offset for fixed header (approx 80px + breathing room)
-      const headerOffset = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-
-      // Update URL hash without jump
-      window.history.pushState(null, '', href);
-    }
-  };
-
-  const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Certifications', href: '#certifications' },
-    { name: 'Case Studies', href: '#case-studies' },
-    { name: 'Contact', href: '#contact' },
-  ];
+  const linkClass = (id: string) =>
+    `rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+      activeId === id ? 'bg-tint text-accent' : 'text-body hover:bg-black/[0.04] hover:text-ink'
+    }`;
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-4 bg-background/80 backdrop-blur-md border-b border-white/5' : 'py-6 bg-transparent'
-        }`}
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b bg-white transition-colors duration-200 ${
+        scrolled || menuOpen ? 'border-line' : 'border-transparent'
+      }`}
     >
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        {/* Logo */}
-        <a
-          href="#"
-          onClick={(e) => { handleLogoClick(e); scrollToSection(e, '#'); }}
-          className="flex items-center gap-2 group"
-        >
-          <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 group-hover:border-primary/50 transition-colors">
-            <Terminal className="w-4 h-4 text-primary" />
-          </div>
-          <span className="font-mono font-bold text-lg tracking-tight uppercase tracking-widest">khushal_sinhmar<span className="text-primary animate-pulse">_</span></span>
+      <nav aria-label="Primary" className="mx-auto flex h-16 w-full max-w-page items-center justify-between px-5 sm:px-8">
+        <a href="#top" className="flex items-center gap-2.5 rounded-lg text-[17px] font-semibold tracking-tight text-ink">
+          <span aria-hidden="true" className="h-2 w-2 rounded-full bg-accent" />
+          {SITE_NAME}
         </a>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => scrollToSection(e, link.href)}
-              className="text-sm font-medium text-muted hover:text-white transition-colors relative group"
-            >
-              {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
-            </a>
+        {/* Desktop links */}
+        <ul className="hidden items-center gap-1 md:flex">
+          {NAV_LINKS.map((link) => (
+            <li key={link.id}>
+              <a
+                href={`#${link.id}`}
+                aria-current={activeId === link.id ? 'location' : undefined}
+                className={`block ${linkClass(link.id)}`}
+              >
+                {link.label}
+              </a>
+            </li>
           ))}
-          <button
-            onClick={onOpenContact}
-            className="px-4 py-2 text-sm font-medium bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-all cursor-pointer"
-          >
-            Get in Touch
-          </button>
-        </div>
+        </ul>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile toggle */}
         <button
-          className="md:hidden p-2 text-muted hover:text-white"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          ref={toggleRef}
+          type="button"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-line text-ink md:hidden"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          onClick={() => setMenuOpen((o) => !o)}
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {menuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
         </button>
-      </div>
+      </nav>
 
-      {/* Mobile Nav */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-surface border-b border-white/10 p-6 flex flex-col gap-4 shadow-2xl">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-lg font-medium text-muted hover:text-white"
-              onClick={(e) => scrollToSection(e, link.href)}
-            >
-              {link.name}
-            </a>
+      {/* Mobile panel */}
+      <div id="mobile-menu" hidden={!menuOpen} className="border-t border-line bg-white md:hidden">
+        <ul className="mx-auto flex max-w-page flex-col gap-1 px-5 py-3 sm:px-8">
+          {NAV_LINKS.map((link) => (
+            <li key={link.id}>
+              <a
+                href={`#${link.id}`}
+                aria-current={activeId === link.id ? 'location' : undefined}
+                onClick={() => setMenuOpen(false)}
+                className={`block py-3 text-base ${linkClass(link.id)}`}
+              >
+                {link.label}
+              </a>
+            </li>
           ))}
-        </div>
-      )}
-    </nav>
+        </ul>
+      </div>
+    </header>
   );
 };

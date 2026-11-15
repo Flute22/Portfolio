@@ -1,58 +1,47 @@
 import React, { useState, lazy, Suspense } from 'react';
-import { Background } from './components/visuals/Background';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { Skills } from './components/Skills';
 import { Projects } from './components/Projects';
 import { Experience } from './components/Experience';
-import { Certifications } from './components/Certifications';
 import { CaseStudies } from './components/CaseStudies';
 import { Contact } from './components/Contact';
+import { Footer } from './components/Footer';
 
-// Lazy load heavy modal components — only loaded when user clicks to open them
-const ContactModal = lazy(() => import('./components/ContactModal').then(m => ({ default: m.ContactModal })));
-const ResumeManager = lazy(() => import('./components/ResumeManager').then(m => ({ default: m.ResumeManager })));
+// The form is only needed when someone opens it, so keep it out of the main bundle.
+const ContactModal = lazy(() =>
+  import('./components/ContactModal').then((m) => ({ default: m.ContactModal })),
+);
 
 function App() {
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const [isResumeManagerOpen, setIsResumeManagerOpen] = useState(false);
-
-  const handleOpenContact = () => setIsContactModalOpen(true);
-  const handleCloseContact = () => setIsContactModalOpen(false);
-
-  const handleOpenResumeManager = () => setIsResumeManagerOpen(true);
-  const handleCloseResumeManager = () => setIsResumeManagerOpen(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   return (
-    <div className="min-h-screen text-slate-200 selection:bg-primary/30 selection:text-white">
-      <Background />
-      <Navbar onOpenContact={handleOpenContact} onOpenResumeManager={handleOpenResumeManager} />
+    <div className="min-h-screen bg-white">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-xl focus:bg-accent focus:px-4 focus:py-2 focus:text-white"
+      >
+        Skip to content
+      </a>
 
-      <main>
+      <Navbar />
+
+      <main id="main">
         <Hero />
         <About />
         <Skills />
         <Projects />
         <Experience />
-        <Certifications />
         <CaseStudies />
-        <Contact onOpenContact={handleOpenContact} />
+        <Contact onOpenContact={() => setIsContactOpen(true)} />
       </main>
 
+      <Footer />
+
       <Suspense fallback={null}>
-        {isContactModalOpen && (
-          <ContactModal
-            isOpen={isContactModalOpen}
-            onClose={handleCloseContact}
-          />
-        )}
-        {isResumeManagerOpen && (
-          <ResumeManager
-            isOpen={isResumeManagerOpen}
-            onClose={handleCloseResumeManager}
-          />
-        )}
+        {isContactOpen && <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />}
       </Suspense>
     </div>
   );

@@ -1,53 +1,39 @@
 import React from 'react';
-import { EXPERIENCE_DATA } from '../constants';
+import { EXPERIENCE_DATA, EXPERIENCE_TITLE } from '../constants';
+import { Card } from './ui/Card';
+import { ChipList } from './ui/Chip';
+import { Section } from './ui/Section';
+import { SectionHeader } from './ui/SectionHeader';
 import { ScrollReveal } from './ui/ScrollReveal';
 
-export const Experience: React.FC = () => {
-  return (
-    <section id="experience" className="py-16 md:py-24 bg-surface/30">
-      <div className="max-w-4xl mx-auto px-6">
-        <ScrollReveal>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Evolution of Expertise</h2>
-          <p className="text-muted text-center mb-12 md:mb-16 max-w-xl mx-auto">
-            A focused look at my academic foundation, current specialization, and continuous dedication to mastering the field of data science.
-          </p>
-        </ScrollReveal>
-        
-        <div className="relative">
-          {/* Vertical Line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-white/10 transform md:-translate-x-1/2"></div>
-          
-          <div className="space-y-12 md:space-y-16">
-            {EXPERIENCE_DATA.map((item, idx) => (
-              <ScrollReveal key={item.id} delay={idx * 120} direction="up">
-              <div className={`relative flex flex-col md:flex-row gap-8 ${idx % 2 === 0 ? 'md:text-right' : 'md:flex-row-reverse md:text-left'}`}>
-                <div className="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-surface border-4 border-primary transform -translate-x-[7px] md:-translate-x-1/2 mt-1.5 z-10 shadow-[0_0_15px_rgba(56,189,248,0.5)]"></div>
+export const Experience: React.FC = () => (
+  <Section id="experience" labelledBy="experience-title">
+    <SectionHeader index="04" label="Experience" title={EXPERIENCE_TITLE} titleId="experience-title" />
 
-                {/* Content */}
-                <div className={`ml-8 md:ml-0 md:w-1/2 ${idx % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                  <span className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-primary mb-3 uppercase tracking-wider">
-                    {item.period}
-                  </span>
-                  <h3 className="text-xl font-bold text-white mb-1">{item.role}</h3>
-                  <h4 className="text-lg text-secondary font-medium mb-4">{item.company}</h4>
-                  <p className="text-slate-400 text-sm leading-relaxed mb-4">
-                    {item.description}
-                  </p>
-                  <div className={`flex flex-wrap gap-2 ${idx % 2 === 0 ? 'md:justify-end justify-start' : 'justify-start'}`}>
-                    {item.skills.map(skill => (
-                      <span key={skill} className="text-[10px] font-mono text-muted/60 bg-white/5 px-2 py-0.5 rounded border border-white/5 uppercase">#{skill}</span>
-                    ))}
-                  </div>
-                </div>
+    <ol className="relative grid gap-3 pl-8 sm:pl-11 md:gap-4">
+      {/* vertical rail */}
+      <span aria-hidden="true" className="absolute bottom-0 left-[7px] top-0 w-px bg-line" />
 
-                {/* Empty Space for alignment */}
-                <div className="hidden md:block md:w-1/2"></div>
+      {EXPERIENCE_DATA.map((item) => (
+        <li key={item.id} className="relative">
+          {/* hollow marker */}
+          <span
+            aria-hidden="true"
+            className="absolute -left-8 top-7 h-3.5 w-3.5 rounded-full border-2 border-accent bg-white sm:-left-11"
+          />
+          <ScrollReveal>
+            <Card className="p-6 sm:p-7">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                <h3 className="text-lg font-semibold tracking-tight sm:text-xl">{item.role}</h3>
+                <p className="font-mono text-sm text-muted">{item.period}</p>
               </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
+              {item.company && <p className="mt-2 text-[15px] font-medium text-accent">{item.company}</p>}
+              <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-muted">{item.description}</p>
+              <ChipList items={item.skills} label={`${item.role} skills`} className="mt-5" />
+            </Card>
+          </ScrollReveal>
+        </li>
+      ))}
+    </ol>
+  </Section>
+);

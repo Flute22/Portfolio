@@ -1,24 +1,35 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Khushal Sinhmar — Portfolio
 
-# Run and deploy your AI Studio app
+Personal portfolio built with React 19, Vite, TypeScript and Tailwind CSS v3.
+Flat, light design system: white cards, one green accent, Instrument Sans for text and JetBrains Mono for labels.
 
-This contains everything you need to run your app locally.
+## Run locally
 
-<<<<<<< HEAD
-View your app in AI Studio: https://ai.studio/apps/a99486fa-da7d-496f-93b7-56bb2e70969d
-=======
-View your app in AI Studio: https://ai.studio/apps/drive/1ac1hfVzj4XgUCYhxRrQlSyOtJNKq3h9e
->>>>>>> 77ac77f02cb747e938e2f94013a43a3cf71ebaf4
+**Prerequisites:** Node.js 20+
 
-## Run Locally
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build in dist/
+npm run preview  # serve the production build
+```
 
-**Prerequisites:**  Node.js
+## Contact form
 
+The form in the contact dialog posts JSON to the URL in `VITE_FORM_ENDPOINT`.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1. Copy `.env.example` to `.env.local`
+2. Set `VITE_FORM_ENDPOINT` to your own FormSubmit / Formspree endpoint
+
+Without it the dialog shows an error that points visitors to the email address. `.env.local` is git-ignored.
+Note that `VITE_*` values are bundled into the public site, so use an endpoint that is safe to expose (form IDs are; API secrets are not).
+
+## Where things live
+
+| What | Where |
+| --- | --- |
+| All page content (copy, projects, skills…) | `constants.tsx`, typed in `types.ts` |
+| Colours, fonts, radii | `tailwind.config.js` |
+| Reusable pieces (Card, Chip, Badge, Metric, SectionHeader…) | `components/ui/` |
+| Page sections | `components/*.tsx` |
+| Resume PDF | `public/Resume.pdf` (served at `/Resume.pdf`) |
