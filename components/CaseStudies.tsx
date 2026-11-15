@@ -21,13 +21,13 @@ export const CaseStudies: React.FC = () => (
       />
     }
   >
-    <ul className="grid gap-3 md:gap-4">
+    <ul className="grid md:gap-4">
       {CASE_STUDIES_DATA.map((study, i) => {
         const titleId = `${study.id}-title`;
         return (
           <li key={study.id}>
             <ScrollReveal delay={i * 60} className="h-full">
-              <Card as="article" aria-labelledby={titleId} className="flex h-full flex-col p-6 sm:p-8">
+              <Card as="article" aria-labelledby={titleId} flat className="flex h-full flex-col px-0 py-5 md:p-8">
                 <MonoLabel tone="accent">CS / {String(i + 1).padStart(2, '0')}</MonoLabel>
                 <h3 id={titleId} className="mt-5 text-xl font-semibold leading-snug tracking-tight sm:text-2xl">
                   {study.title}

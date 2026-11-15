@@ -14,13 +14,13 @@ interface SectionHeaderProps {
 }
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({ index, label, title, titleId, split = false }) => (
-  <header className={`mb-8 md:mb-10 ${split ? 'lg:mb-0' : ''}`.trim()}>
+  <header className={`mb-4 md:mb-10 ${split ? 'lg:mb-0' : ''}`.trim()}>
     <MonoLabel tone="accent">
       {index} / {label}
     </MonoLabel>
     <h2
       id={titleId}
-      className="mt-3 text-[2rem] font-semibold leading-[1.1] tracking-[-0.03em] md:text-[2.5rem]"
+      className="mt-2 text-[1.625rem] font-semibold leading-[1.1] tracking-[-0.03em] sm:text-[2rem] md:mt-3 md:text-[2.5rem]"
     >
       {title}
     </h2>

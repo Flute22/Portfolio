@@ -12,7 +12,7 @@ export const Experience: React.FC = () => (
     labelledBy="experience-title"
     aside={<SectionHeader index="04" label="Experience" title={EXPERIENCE_TITLE} titleId="experience-title" split />}
   >
-    <ol className="relative grid gap-3 pl-8 sm:pl-11 md:gap-4">
+    <ol className="relative grid gap-1 pl-6 sm:pl-11 md:gap-4">
       {/* vertical rail */}
       <span aria-hidden="true" className="absolute bottom-0 left-[7px] top-0 w-px bg-line" />
 
@@ -21,10 +21,10 @@ export const Experience: React.FC = () => (
           {/* hollow marker */}
           <span
             aria-hidden="true"
-            className="absolute -left-8 top-7 h-3.5 w-3.5 rounded-full border-2 border-accent bg-page sm:-left-11"
+            className="absolute -left-6 top-[1.05rem] h-3.5 w-3.5 rounded-full border-2 border-accent bg-page sm:-left-11 md:top-7"
           />
           <ScrollReveal>
-            <Card className="p-6 sm:p-7">
+            <Card flat className="border-t-0 px-0 py-3 md:border-t md:p-7">
               <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
                 <h3 className="text-lg font-semibold tracking-tight sm:text-xl">{item.role}</h3>
                 <p className="font-mono text-sm text-muted">{item.period}</p>

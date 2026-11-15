@@ -15,23 +15,26 @@ export const Hero: React.FC = () => {
     HERO_DATA;
 
   return (
-    <section id="top" aria-labelledby="hero-title" className="pb-2 pt-24 md:pt-28">
-      <div className="mx-auto w-full max-w-page px-4 sm:px-6 lg:px-8">
+    <section id="top" aria-labelledby="hero-title" className="pb-2 pt-20 md:pt-28">
+      <div className="mx-auto w-full max-w-page px-4 sm:px-6 lg:px-12">
         {/* Bento: 1 col on phones, 3 on tablets, 12 on desktop.
             Desktop: headline 8 cols (3 rows) | Currently, 82%, $1.20M stacked in 4 cols,
             then Core stack 8 cols | Resume 4 cols. */}
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-12">
           {/* Headline */}
           <ScrollReveal className="sm:col-span-3 lg:col-span-8 lg:col-start-1 lg:row-span-3 lg:row-start-1">
-            <Card className="flex h-full flex-col p-6 sm:p-8 lg:p-10">
+            <Card className="flex h-full flex-col p-5 sm:p-8 lg:p-10">
               <div className="flex items-center gap-2.5">
                 <Dot />
-                <MonoLabel tone="accent">{eyebrow}</MonoLabel>
+                <MonoLabel tone="accent">
+                  {eyebrow.split(' · ')[0]}
+                  <span className="hidden sm:inline"> · {eyebrow.split(' · ')[1]}</span>
+                </MonoLabel>
               </div>
 
               <h1
                 id="hero-title"
-                className="mt-8 max-w-[20ch] text-balance text-[2.25rem] font-semibold leading-[1.02] tracking-[-0.035em] sm:mt-10 sm:text-[2.625rem] lg:mt-14 lg:text-[3.5rem] xl:text-[4rem]"
+                className="mt-6 max-w-[20ch] text-balance text-[2rem] font-semibold leading-[1.02] tracking-[-0.035em] sm:mt-10 sm:text-[2.625rem] lg:mt-14 lg:text-[3.5rem] xl:text-[4rem]"
               >
                 {headline}
               </h1>
@@ -43,14 +46,14 @@ export const Hero: React.FC = () => {
               <div className="mt-auto flex flex-wrap gap-3 pt-8">
                 <a
                   href="#projects"
-                  className="inline-flex h-12 items-center gap-2 rounded-2xl bg-accent-solid px-6 text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
+                  className="inline-flex h-11 items-center gap-2 rounded-xl bg-accent-solid sm:h-12 sm:rounded-2xl px-6 text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
                 >
                   {primaryCta}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <a
                   href="#contact"
-                  className="inline-flex h-12 items-center rounded-2xl border border-line bg-surface px-6 text-[15px] font-medium text-ink transition-colors hover:border-accent/50"
+                  className="inline-flex h-11 items-center rounded-xl border border-line bg-surface sm:h-12 sm:rounded-2xl px-6 text-[15px] font-medium text-ink transition-colors hover:border-accent/50"
                 >
                   {secondaryCta}
                 </a>
@@ -60,7 +63,7 @@ export const Hero: React.FC = () => {
 
           {/* Currently */}
           <ScrollReveal delay={60} className="sm:col-span-3 lg:col-span-4 lg:col-start-9 lg:row-start-1">
-            <Card className="flex h-full flex-col justify-center p-6 sm:p-8">
+            <Card className="flex h-full flex-col justify-center p-5 sm:p-8">
               <div className="flex items-center gap-2.5">
                 <Dot />
                 <MonoLabel>Currently</MonoLabel>
@@ -76,8 +79,8 @@ export const Hero: React.FC = () => {
 
           {/* 82% */}
           <ScrollReveal delay={120} className="sm:col-span-3 lg:col-span-4 lg:col-start-9 lg:row-start-2">
-            <Card tone="accent" className="flex h-full flex-col justify-center p-6 sm:p-8">
-              <p className="text-[3.5rem] font-semibold leading-none tracking-[-0.04em] sm:text-6xl">
+            <Card tone="accent" className="flex h-full flex-col justify-center p-5 sm:p-8">
+              <p className="text-5xl font-semibold leading-none tracking-[-0.04em] sm:text-6xl">
                 {featuredStat.value}
               </p>
               <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white sm:text-base">
@@ -88,7 +91,7 @@ export const Hero: React.FC = () => {
 
           {/* Core stack */}
           <ScrollReveal delay={60} className="sm:col-span-2 lg:col-span-8 lg:col-start-1 lg:row-start-4">
-            <Card className="h-full p-6 sm:p-8">
+            <Card className="h-full p-5 sm:p-8">
               <MonoLabel>Core stack</MonoLabel>
               <ChipList items={stack} label="Core stack" className="mt-4" />
             </Card>
@@ -96,7 +99,7 @@ export const Hero: React.FC = () => {
 
           {/* $1.20M */}
           <ScrollReveal delay={120} className="sm:col-span-1 lg:col-span-4 lg:col-start-9 lg:row-start-3">
-            <Card className="flex h-full flex-col justify-between gap-6 p-6 sm:p-7">
+            <Card className="flex h-full flex-col justify-between gap-6 p-5 sm:p-7">
               <p className="text-[2rem] font-semibold leading-none tracking-[-0.03em] text-ink sm:text-4xl">
                 {secondaryStat.value}
               </p>
@@ -105,12 +108,13 @@ export const Hero: React.FC = () => {
           </ScrollReveal>
 
           {/* Resume */}
-          <ScrollReveal delay={180} className="sm:col-span-3 lg:col-span-4 lg:col-start-9 lg:row-start-4">
+          {/* Hidden on phones: the same download button lives in the Contact card. */}
+          <ScrollReveal delay={180} className="hidden sm:col-span-3 sm:block lg:col-span-4 lg:col-start-9 lg:row-start-4">
             <Card className="h-full p-0">
               <a
                 href={RESUME_URL}
                 download={RESUME_FILE_NAME}
-                className="flex h-full flex-col justify-between gap-6 rounded-card p-6 sm:p-7"
+                className="flex h-full flex-col justify-between gap-6 rounded-card p-5 sm:p-7"
               >
                 <Download className="h-6 w-6 text-accent" aria-hidden="true" />
                 <span>

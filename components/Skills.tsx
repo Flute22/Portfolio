@@ -10,11 +10,11 @@ export const Skills: React.FC = () => (
   <Section id="skills" labelledBy="skills-title">
     <SectionHeader index="02" label="Skills" title={SKILLS_TITLE} titleId="skills-title" />
 
-    <ul className="grid gap-3 md:grid-cols-2 md:gap-4">
+    <ul className="grid md:grid-cols-2 md:gap-4">
       {SKILLS_DATA.map((group, i) => (
         <li key={group.category}>
           <ScrollReveal delay={(i % 2) * 60} className="h-full">
-            <Card className="h-full p-6 sm:p-8">
+            <Card flat className="h-full px-0 py-5 md:p-8">
               <div className="flex items-baseline justify-between gap-4">
                 <h3 className="text-xl font-semibold tracking-tight">{group.category}</h3>
                 <span className="font-mono text-sm text-muted">{group.tag}</span>

@@ -79,7 +79,7 @@ export const Navbar: React.FC = () => {
         scrolled || menuOpen ? 'border-line' : 'border-transparent'
       }`}
     >
-      <nav aria-label="Primary" className="mx-auto flex h-16 w-full max-w-page items-center justify-between px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Primary" className="mx-auto flex h-16 w-full max-w-page items-center justify-between px-4 sm:px-6 lg:px-12">
         <a href="#top" className="flex items-center gap-2.5 rounded-lg text-[17px] font-semibold tracking-tight text-ink">
           <span aria-hidden="true" className="h-2 w-2 rounded-full bg-accent" />
           {SITE_NAME}
@@ -107,7 +107,7 @@ export const Navbar: React.FC = () => {
         <button
           ref={toggleRef}
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-line text-ink md:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-ink hover:bg-ink/5 sm:h-11 sm:w-11 sm:border sm:border-line md:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -120,7 +120,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile panel */}
       <div id="mobile-menu" hidden={!menuOpen} className="border-t border-line bg-page md:hidden">
-        <ul className="mx-auto flex max-w-page flex-col gap-1 px-4 py-3 sm:px-6 lg:px-8">
+        <ul className="mx-auto flex max-w-page flex-col gap-1 px-4 py-3 sm:px-6 lg:px-12">
           {NAV_LINKS.map((link) => (
             <li key={link.id}>
               <a

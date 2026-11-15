@@ -28,7 +28,7 @@ interface ContactProps {
 export const Contact: React.FC<ContactProps> = ({ onOpenContact }) => (
   <Section id="contact" labelledBy="contact-title" className="pb-12 md:pb-16">
     <ScrollReveal>
-      <Card tone="accent" className="p-6 sm:p-10 lg:p-14">
+      <Card tone="accent" className="p-5 sm:p-10 lg:p-14">
         {/* Mobile: stacked, as in the mockup. Desktop: text left (7 cols), actions right (5 cols). */}
         <div className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
           <div className="lg:col-span-7">
