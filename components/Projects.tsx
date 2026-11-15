@@ -1,29 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowUpRight, Github } from 'lucide-react';
-import { PROJECTS_DATA, PROJECTS_TITLE } from '../constants';
-import type { Project } from '../types';
+import { PROJECTS_DATA, PROJECTS_TITLE, PROJECT_FILTERS } from '../constants';
+import type { Project, ProjectCategory } from '../types';
 import { Badge } from './ui/Badge';
 import { Card } from './ui/Card';
 import { ChipList } from './ui/Chip';
-import { Metric } from './ui/Metric';
 import { MonoLabel } from './ui/MonoLabel';
 import { Section } from './ui/Section';
 import { SectionHeader } from './ui/SectionHeader';
-import { ScrollReveal } from './ui/ScrollReveal';
 
-// Phones: no inner box, just full-width rows separated by hairlines.
-const cell = 'py-4 md:p-6 lg:p-5 xl:p-6';
-const bodyText = 'mt-3 text-[15px] leading-relaxed text-ink sm:text-base';
+type Filter = 'All' | ProjectCategory;
+
+/** One of the four cells in a project's detail grid. */
+const cell = 'flex flex-[1_1_230px] flex-col bg-surface p-5';
+const bodyText = 'm-0 text-pretty text-[15px] leading-[1.55]';
+
+const FilterTabs: React.FC<{ value: Filter; onChange: (next: Filter) => void }> = ({ value, onChange }) => (
+  <div
+    role="group"
+    aria-label="Filter projects"
+    className="flex flex-wrap gap-0.5 rounded-full border border-line bg-surface p-1"
+  >
+    {PROJECT_FILTERS.map((tab) => {
+      const on = value === tab.key;
+      return (
+        <button
+          key={tab.key}
+          type="button"
+          aria-pressed={on}
+          onClick={() => onChange(tab.key)}
+          className={`min-h-10 cursor-pointer rounded-full border-0 px-4 text-[14px] font-medium transition-colors ${
+            on ? 'bg-ink text-page' : 'bg-transparent text-muted hover:text-ink'
+          }`}
+        >
+          {tab.label}
+        </button>
+      );
+    })}
+  </div>
+);
 
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const titleId = `${project.id}-title`;
 
   return (
-    <Card as="article" aria-labelledby={titleId} className="p-5 sm:p-6 lg:p-8">
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div className="min-w-[14rem] flex-1">
+    <Card
+      as="article"
+      reveal={false}
+      lift
+      aria-labelledby={titleId}
+      className="flex flex-col gap-7 p-[clamp(22px,3.4vw,40px)] transition-[transform,border-color] duration-[250ms]"
+    >
+      <header className="flex flex-wrap items-start justify-between gap-5">
+        <div className="flex max-w-[720px] flex-col gap-3">
           <Badge>{project.badge}</Badge>
-          <h3 id={titleId} className="mt-4 text-xl font-semibold tracking-tight sm:text-2xl">
+          <h3
+            id={titleId}
+            className="m-0 text-balance text-[clamp(24px,2.6vw,32px)] font-semibold leading-[1.12] tracking-[-0.02em]"
+          >
             {project.title}
           </h3>
         </div>
@@ -31,78 +65,67 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           href={project.link}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`${project.title} on GitHub (opens in a new tab)`}
-          className="inline-flex h-11 items-center gap-2 rounded-xl border border-line bg-surface px-4 text-sm font-medium text-ink transition-colors hover:border-accent/50"
+          aria-label={`View ${project.title} on GitHub (opens in new tab)`}
+          className="flex min-h-11 items-center gap-2 rounded-xl border border-line2 px-4 text-[15px] font-medium text-ink no-underline transition-colors hover:border-accent"
         >
-          <Github className="h-4 w-4" aria-hidden="true" />
+          <Github className="h-[17px] w-[17px]" aria-hidden="true" />
           GitHub
           <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
         </a>
+      </header>
+
+      {/* Problem / Approach / Tools / Result: 1px gaps over the line colour draw the dividers */}
+      <div className="flex flex-wrap gap-px overflow-hidden rounded-2xl border border-line bg-line">
+        <div className={`${cell} gap-2`}>
+          <MonoLabel>1 · Problem</MonoLabel>
+          <p className={bodyText}>{project.problem}</p>
+        </div>
+        <div className={`${cell} gap-2`}>
+          <MonoLabel>2 · Approach</MonoLabel>
+          <p className={bodyText}>{project.approach}</p>
+        </div>
+        <div className={`${cell} gap-2.5`}>
+          <MonoLabel>3 · Tools</MonoLabel>
+          <ChipList items={project.tools} label="Tools used" size="sm" />
+        </div>
+        <div className={`${cell} gap-3`}>
+          <MonoLabel tone="accent">4 · Result</MonoLabel>
+          <dl className="m-0 flex flex-wrap gap-5">
+            {project.metrics.map((metric) => (
+              <div key={metric.label} className="flex flex-col-reverse gap-1">
+                <dt className="text-[13px] text-muted">{metric.label}</dt>
+                <dd className="m-0 text-[28px] font-semibold leading-none tracking-[-0.02em] text-accent">
+                  {metric.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <p className={bodyText}>{project.outcome}</p>
+        </div>
       </div>
-
-      {/* 2 x 2 detail grid */}
-      <dl className="mt-4 grid grid-cols-1 border-t border-line md:mt-6 md:grid-cols-2 md:overflow-hidden md:rounded-inner md:border md:border-line lg:grid-cols-4">
-        <div className={`${cell} border-b border-line md:border-r lg:border-b-0`}>
-          <dt>
-            <MonoLabel>1 · Problem</MonoLabel>
-          </dt>
-          <dd className={bodyText}>{project.problem}</dd>
-        </div>
-
-        <div className={`${cell} border-b border-line lg:border-b-0 lg:border-r`}>
-          <dt>
-            <MonoLabel>2 · Approach</MonoLabel>
-          </dt>
-          <dd className={bodyText}>{project.approach}</dd>
-        </div>
-
-        <div className={`${cell} border-b border-line md:border-b-0 md:border-r`}>
-          <dt>
-            <MonoLabel>3 · Tools</MonoLabel>
-          </dt>
-          <dd className="mt-3">
-            <ChipList items={project.tools} label="Tools used" />
-          </dd>
-        </div>
-
-        {/* Result: a tinted panel so the outcome stands out from the other three cells. */}
-        <div
-          className={`${cell} mt-3 rounded-xl bg-tint px-4 md:mt-0 md:rounded-none md:px-6 lg:px-5 xl:px-6`}
-        >
-          <dt>
-            <MonoLabel tone="accent">4 · Result</MonoLabel>
-          </dt>
-          <dd className="mt-4">
-            <div className="grid grid-cols-2 gap-3">
-              {project.metrics.map((m, i) => (
-                <Metric
-                  key={m.label}
-                  value={m.value}
-                  label={m.label}
-                  className={i > 0 ? 'border-l border-tint-line pl-3' : ''}
-                />
-              ))}
-            </div>
-            <p className="mt-4 border-t border-tint-line pt-4 text-sm leading-relaxed text-ink">
-              {project.outcome}
-            </p>
-          </dd>
-        </div>
-      </dl>
     </Card>
   );
 };
 
-export const Projects: React.FC = () => (
-  <Section id="projects" labelledBy="projects-title">
-    <SectionHeader index="03" label="Projects" title={PROJECTS_TITLE} titleId="projects-title" />
+export const Projects: React.FC = () => {
+  const [filter, setFilter] = useState<Filter>('All');
+  const visible = PROJECTS_DATA.filter((p) => filter === 'All' || p.category === filter);
 
-    <div className="grid gap-3 md:gap-4">
-      {PROJECTS_DATA.map((project) => (
-        <ScrollReveal key={project.id}>
-          <ProjectCard project={project} />
-        </ScrollReveal>
-      ))}
-    </div>
-  </Section>
-);
+  return (
+    <Section id="projects" labelledBy="projects-title">
+      <SectionHeader
+        index="03"
+        label="Projects"
+        title={PROJECTS_TITLE}
+        titleId="projects-title"
+        actions={<FilterTabs value={filter} onChange={setFilter} />}
+      />
+
+      <div className="flex flex-col gap-3" aria-live="polite">
+        {visible.map((project) => (
+          <ProjectCard key={project.id} project={project} />
+        ))}
+      </div>
+    </Section>
+  );
+};

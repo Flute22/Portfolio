@@ -2,39 +2,37 @@ import React from 'react';
 import { EXPERIENCE_DATA, EXPERIENCE_TITLE } from '../constants';
 import { Card } from './ui/Card';
 import { ChipList } from './ui/Chip';
+import { Reveal } from './ui/Reveal';
 import { Section } from './ui/Section';
 import { SectionHeader } from './ui/SectionHeader';
-import { ScrollReveal } from './ui/ScrollReveal';
 
 export const Experience: React.FC = () => (
-  <Section
-    id="experience"
-    labelledBy="experience-title"
-    aside={<SectionHeader index="04" label="Experience" title={EXPERIENCE_TITLE} titleId="experience-title" split />}
-  >
-    <ol className="relative grid gap-1 pl-6 sm:pl-11 md:gap-4">
-      {/* vertical rail */}
-      <span aria-hidden="true" className="absolute bottom-0 left-[7px] top-0 w-px bg-line" />
+  <Section id="experience" labelledBy="experience-title">
+    <SectionHeader index="04" label="Experience" title={EXPERIENCE_TITLE} titleId="experience-title" />
 
+    <ol className="relative m-0 flex list-none flex-col gap-3 p-0">
       {EXPERIENCE_DATA.map((item) => (
-        <li key={item.id} className="relative">
-          {/* hollow marker */}
-          <span
-            aria-hidden="true"
-            className="absolute -left-6 top-[1.05rem] h-3.5 w-3.5 rounded-full border-2 border-accent bg-page sm:-left-11 md:top-7"
-          />
-          <ScrollReveal>
-            <Card flat className="border-t-0 px-0 py-3 md:border-t md:p-7">
-              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                <h3 className="text-lg font-semibold tracking-tight sm:text-xl">{item.role}</h3>
-                <p className="font-mono text-sm text-muted">{item.period}</p>
-              </div>
-              {item.company && <p className="mt-2 text-[15px] font-medium text-accent">{item.company}</p>}
-              <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-muted">{item.description}</p>
-              <ChipList items={item.skills} label={`${item.role} skills`} className="mt-5" />
-            </Card>
-          </ScrollReveal>
-        </li>
+        <Reveal
+          key={item.id}
+          as="li"
+          className="relative grid grid-cols-[28px_minmax(0,1fr)] gap-x-[clamp(12px,2vw,24px)]"
+        >
+          {/* rail + hollow marker */}
+          <div aria-hidden="true" className="relative flex justify-center">
+            <span className="absolute -bottom-3 top-0 w-px bg-line2" />
+            <span className="relative mt-[30px] h-[13px] w-[13px] rounded-full border-2 border-accent bg-page" />
+          </div>
+
+          <Card reveal={false} radius="lg" className="flex flex-col gap-3 p-[clamp(20px,3vw,28px)]">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-5 gap-y-2">
+              <h3 className="m-0 text-[clamp(19px,2vw,22px)] font-semibold tracking-[-0.015em]">{item.role}</h3>
+              <span className="whitespace-nowrap font-mono text-[13px] font-medium text-muted">{item.period}</span>
+            </div>
+            {item.company && <div className="text-[15px] font-medium text-accent">{item.company}</div>}
+            <p className="m-0 max-w-[75ch] text-pretty text-[15px] leading-[1.6] text-muted">{item.description}</p>
+            <ChipList items={item.skills} label={`${item.role} skills`} size="xs" className="mt-1" />
+          </Card>
+        </Reveal>
       ))}
     </ol>
   </Section>

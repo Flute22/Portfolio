@@ -1,43 +1,58 @@
 import React from 'react';
+import { useReveal } from './useReveal';
 
-type CardTone = 'default' | 'accent';
+type Tone = 'tile' | 'fill';
 
 interface CardProps extends React.HTMLAttributes<HTMLElement> {
-  as?: 'div' | 'article' | 'section';
-  tone?: CardTone;
-  /** Subtle border-colour change on hover (default tone only, from md up). */
-  hoverable?: boolean;
-  /**
-   * Minimal on phones: no box, just a hairline above the content.
-   * From md up it becomes a normal card. Callers set their own padding
-   * (e.g. `px-0 py-5 md:p-8`).
-   */
-  flat?: boolean;
+  as?: 'div' | 'article' | 'li' | 'a';
+  /** tile = bordered surface; fill = solid green panel with white text */
+  tone?: Tone;
+  /** xl = 24px corners (main tiles), lg = 20px (list items) */
+  radius?: 'xl' | 'lg';
+  /** Lift 3px and strengthen the border on hover */
+  lift?: boolean;
+  /** Fade up on scroll (default on) */
+  reveal?: boolean;
+  /** Stagger for the reveal, in ms */
+  delay?: number;
+  /** Only for as="a" */
+  href?: string;
+  download?: string;
 }
 
-const TONES: Record<CardTone, string> = {
-  default: 'bg-surface border border-line',
-  accent: 'bg-accent-solid text-white border border-accent-solid',
+const TONES: Record<Tone, string> = {
+  tile: 'border border-line bg-surface',
+  fill: 'bg-fill text-white',
 };
-
-const FLAT =
-  'rounded-none border-0 border-t border-line bg-transparent md:rounded-card md:border md:bg-surface';
 
 export const Card: React.FC<CardProps> = ({
   as: Tag = 'div',
-  tone = 'default',
-  hoverable = true,
-  flat = false,
+  tone = 'tile',
+  radius = 'xl',
+  lift = false,
+  reveal: revealOn = true,
+  delay = 0,
   className = '',
+  style,
   children,
   ...rest
 }) => {
-  const hover =
-    tone === 'default' && hoverable ? 'transition-colors duration-200 md:hover:border-accent/40' : '';
-  const base = flat && tone === 'default' ? FLAT : `rounded-2xl md:rounded-card ${TONES[tone]}`;
+  const reveal = useReveal<HTMLElement>(delay, revealOn);
+  const Element = Tag as React.ElementType;
+  const rounded = radius === 'xl' ? 'rounded-3xl' : 'rounded-[20px]';
+  const liftClasses =
+    lift && reveal.settled
+      ? 'transition-[transform,border-color] duration-[250ms] hover:-translate-y-[3px] hover:border-line2'
+      : '';
+
   return (
-    <Tag className={`${base} ${hover} ${className}`.trim()} {...rest}>
+    <Element
+      ref={reveal.ref}
+      style={{ ...reveal.style, ...style }}
+      className={`${rounded} ${TONES[tone]} ${reveal.className} ${liftClasses} ${className}`.replace(/\s+/g, ' ').trim()}
+      {...rest}
+    >
       {children}
-    </Tag>
+    </Element>
   );
 };

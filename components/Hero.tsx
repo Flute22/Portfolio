@@ -4,7 +4,6 @@ import { HERO_DATA, RESUME_FILE_NAME, RESUME_URL } from '../constants';
 import { Card } from './ui/Card';
 import { ChipList } from './ui/Chip';
 import { MonoLabel } from './ui/MonoLabel';
-import { ScrollReveal } from './ui/ScrollReveal';
 
 const Dot: React.FC = () => (
   <span aria-hidden="true" className="inline-block h-2 w-2 shrink-0 rounded-full bg-accent" />
@@ -15,118 +14,98 @@ export const Hero: React.FC = () => {
     HERO_DATA;
 
   return (
-    <section id="top" aria-labelledby="hero-title" className="pb-2 pt-20 md:pt-28">
-      <div className="mx-auto w-full max-w-page px-4 sm:px-6 lg:px-12">
-        {/* Bento: 1 col on phones, 3 on tablets, 12 on desktop.
-            Desktop: headline 8 cols (3 rows) | Currently, 82%, $1.20M stacked in 4 cols,
-            then Core stack 8 cols | Resume 4 cols. */}
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-12">
-          {/* Headline */}
-          <ScrollReveal className="sm:col-span-3 lg:col-span-8 lg:col-start-1 lg:row-span-3 lg:row-start-1">
-            <Card className="flex h-full flex-col p-5 sm:p-8 lg:p-10">
-              <div className="flex items-center gap-2.5">
-                <Dot />
-                <MonoLabel tone="accent">
-                  {eyebrow.split(' · ')[0]}
-                  <span className="hidden sm:inline"> · {eyebrow.split(' · ')[1]}</span>
-                </MonoLabel>
-              </div>
+    <section
+      id="top"
+      aria-labelledby="hero-title"
+      className="container-page flex flex-col gap-3 pt-[clamp(16px,2vw,24px)]"
+    >
+      <div className="flex flex-wrap gap-3">
+        {/* Headline */}
+        <Card className="flex min-h-[clamp(420px,52vw,540px)] flex-[3_1_560px] flex-col justify-between gap-9 p-[clamp(24px,4.5vw,56px)]">
+          <div className="flex items-center gap-2.5">
+            <Dot />
+            <MonoLabel tone="accent">{eyebrow}</MonoLabel>
+          </div>
 
-              <h1
-                id="hero-title"
-                className="mt-6 max-w-[20ch] text-balance text-[2rem] font-semibold leading-[1.02] tracking-[-0.035em] sm:mt-10 sm:text-[2.625rem] lg:mt-14 lg:text-[3.5rem] xl:text-[4rem]"
-              >
-                {headline}
-              </h1>
+          <h1
+            id="hero-title"
+            className="m-0 max-w-[16ch] text-balance text-[clamp(40px,6.4vw,76px)] font-semibold leading-none tracking-[-0.035em]"
+          >
+            {headline}
+          </h1>
 
-              <p className="mt-6 max-w-[34rem] text-base leading-relaxed text-body sm:text-[17px]">
-                {description}
-              </p>
-
-              <div className="mt-auto flex flex-wrap gap-3 pt-8">
-                <a
-                  href="#projects"
-                  className="inline-flex h-11 items-center gap-2 rounded-xl bg-accent-solid sm:h-12 sm:rounded-2xl px-6 text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
-                >
-                  {primaryCta}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </a>
-                <a
-                  href="#contact"
-                  className="inline-flex h-11 items-center rounded-xl border border-line bg-surface sm:h-12 sm:rounded-2xl px-6 text-[15px] font-medium text-ink transition-colors hover:border-accent/50"
-                >
-                  {secondaryCta}
-                </a>
-              </div>
-            </Card>
-          </ScrollReveal>
-
-          {/* Currently */}
-          <ScrollReveal delay={60} className="sm:col-span-3 lg:col-span-4 lg:col-start-9 lg:row-start-1">
-            <Card className="flex h-full flex-col justify-center p-5 sm:p-8">
-              <div className="flex items-center gap-2.5">
-                <Dot />
-                <MonoLabel>Currently</MonoLabel>
-              </div>
-              <p className="mt-4 text-xl font-semibold leading-snug tracking-tight text-ink">
-                {current.title}
-              </p>
-              <p className="mt-2 text-[15px] text-muted">
-                {current.organisation} · {current.period}
-              </p>
-            </Card>
-          </ScrollReveal>
-
-          {/* 82% */}
-          <ScrollReveal delay={120} className="sm:col-span-3 lg:col-span-4 lg:col-start-9 lg:row-start-2">
-            <Card tone="accent" className="flex h-full flex-col justify-center p-5 sm:p-8">
-              <p className="text-5xl font-semibold leading-none tracking-[-0.04em] sm:text-6xl">
-                {featuredStat.value}
-              </p>
-              <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white sm:text-base">
-                {featuredStat.text}
-              </p>
-            </Card>
-          </ScrollReveal>
-
-          {/* Core stack */}
-          <ScrollReveal delay={60} className="sm:col-span-2 lg:col-span-8 lg:col-start-1 lg:row-start-4">
-            <Card className="h-full p-5 sm:p-8">
-              <MonoLabel>Core stack</MonoLabel>
-              <ChipList items={stack} label="Core stack" className="mt-4" />
-            </Card>
-          </ScrollReveal>
-
-          {/* $1.20M */}
-          <ScrollReveal delay={120} className="sm:col-span-1 lg:col-span-4 lg:col-start-9 lg:row-start-3">
-            <Card className="flex h-full flex-col justify-between gap-6 p-5 sm:p-7">
-              <p className="text-[2rem] font-semibold leading-none tracking-[-0.03em] text-ink sm:text-4xl">
-                {secondaryStat.value}
-              </p>
-              <p className="text-sm leading-relaxed text-muted">{secondaryStat.text}</p>
-            </Card>
-          </ScrollReveal>
-
-          {/* Resume */}
-          {/* Hidden on phones: the same download button lives in the Contact card. */}
-          <ScrollReveal delay={180} className="hidden sm:col-span-3 sm:block lg:col-span-4 lg:col-start-9 lg:row-start-4">
-            <Card className="h-full p-0">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <p className="m-0 max-w-[470px] text-pretty text-[clamp(16px,1.5vw,19px)] leading-[1.55] text-muted">
+              {description}
+            </p>
+            <div className="flex flex-wrap gap-2.5">
               <a
-                href={RESUME_URL}
-                download={RESUME_FILE_NAME}
-                className="flex h-full flex-col justify-between gap-6 rounded-card p-5 sm:p-7"
+                href="#projects"
+                className="flex h-[52px] items-center gap-2.5 rounded-[14px] bg-accent px-6 text-[16px] font-semibold text-accent-on no-underline transition-transform hover:-translate-y-0.5"
               >
-                <Download className="h-6 w-6 text-accent" aria-hidden="true" />
-                <span>
-                  <span className="block text-lg font-semibold tracking-tight text-ink">
-                    Download resume
-                  </span>
-                  <span className="mt-1 block font-mono text-sm text-muted">PDF</span>
-                </span>
+                {primaryCta}
+                <ArrowRight className="h-[17px] w-[17px]" aria-hidden="true" />
               </a>
-            </Card>
-          </ScrollReveal>
+              <a
+                href="#contact"
+                className="flex h-[52px] items-center rounded-[14px] border border-line2 px-6 text-[16px] font-medium text-ink no-underline transition-[transform,border-color] hover:-translate-y-0.5 hover:border-muted"
+              >
+                {secondaryCta}
+              </a>
+            </div>
+          </div>
+        </Card>
+
+        {/* Currently + 82% */}
+        <div className="flex flex-[1_1_280px] flex-col gap-3">
+          <Card delay={80} className="flex flex-1 flex-col gap-3 p-6">
+            <div className="flex items-center gap-2 font-mono text-[12px] font-medium uppercase leading-none tracking-[0.06em] text-muted">
+              <Dot />
+              Currently
+            </div>
+            <div className="text-[20px] font-semibold leading-tight tracking-[-0.01em]">{current.title}</div>
+            <div className="text-[15px] text-muted">
+              {current.organisation} · {current.period}
+            </div>
+          </Card>
+
+          <Card tone="fill" delay={160} className="flex flex-1 flex-col justify-between gap-4 p-6">
+            <div className="text-[clamp(56px,6vw,72px)] font-bold leading-[0.9] tracking-[-0.04em]">
+              {featuredStat.value}
+            </div>
+            <div className="text-[16px] leading-[1.4]">{featuredStat.text}</div>
+          </Card>
         </div>
+      </div>
+
+      <div className="flex flex-wrap gap-3">
+        {/* Core stack */}
+        <Card delay={200} className="flex flex-[2_1_420px] flex-col gap-3.5 p-6">
+          <MonoLabel>Core stack</MonoLabel>
+          <ChipList items={stack} label="Core stack" />
+        </Card>
+
+        {/* $1.20M */}
+        <Card delay={240} className="flex flex-[1_1_220px] flex-col justify-between gap-2.5 p-6">
+          <div className="text-[40px] font-semibold leading-none tracking-[-0.03em]">{secondaryStat.value}</div>
+          <div className="text-[15px] text-muted">{secondaryStat.text}</div>
+        </Card>
+
+        {/* Resume */}
+        <Card
+          as="a"
+          lift
+          delay={280}
+          href={RESUME_URL}
+          download={RESUME_FILE_NAME}
+          className="flex flex-[1_1_220px] flex-col justify-between gap-4 p-6 text-ink no-underline"
+        >
+          <Download className="h-6 w-6 text-accent" aria-hidden="true" />
+          <div className="flex flex-col gap-1">
+            <span className="text-[18px] font-semibold">Download resume</span>
+            <span className="font-mono text-[13px] text-muted">PDF</span>
+          </div>
+        </Card>
       </div>
     </section>
   );

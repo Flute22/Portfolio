@@ -3,46 +3,28 @@ import { Menu, X } from 'lucide-react';
 import { NAV_LINKS, SITE_NAME } from '../constants';
 import { ThemeToggle } from './ThemeToggle';
 
-/** Every observed section; ids that are not in NAV_LINKS simply clear the highlight. */
-const OBSERVED_IDS = ['top', 'about', 'skills', 'projects', 'experience', 'case-studies', 'contact'];
-const NAV_IDS = new Set(NAV_LINKS.map((l) => l.id));
+/** The section whose top has passed this line (px from viewport top) counts as current. */
+const ACTIVE_LINE = 160;
 
 export const Navbar: React.FC = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState('');
   const toggleRef = useRef<HTMLButtonElement>(null);
 
-  // Border appears once the page has scrolled; last section wins at the very bottom.
+  // Highlight the current section; at the very bottom of the page it is always Contact.
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 8);
-      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
-      if (atBottom) setActiveId('contact');
+      let current = '';
+      for (const { id } of NAV_LINKS) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top < ACTIVE_LINE) current = id;
+      }
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = 'contact';
+      setActiveId(current);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  // Scroll-spy: a thin band around 40% of the viewport decides the active section.
-  useEffect(() => {
-    if (typeof IntersectionObserver === 'undefined') return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(NAV_IDS.has(entry.target.id) ? entry.target.id : null);
-          }
-        });
-      },
-      { rootMargin: '-40% 0px -55% 0px' },
-    );
-    OBSERVED_IDS.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
   }, []);
 
   // Escape closes the mobile menu and hands focus back to the toggle.
@@ -58,9 +40,9 @@ export const Navbar: React.FC = () => {
     return () => document.removeEventListener('keydown', onKey);
   }, [menuOpen]);
 
-  // Close the mobile menu if the viewport grows past the breakpoint.
+  // Close the mobile menu if the viewport grows to the desktop navbar (1000px).
   useEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px)');
+    const mq = window.matchMedia('(min-width: 1000px)');
     const onChange = (e: MediaQueryListEvent) => {
       if (e.matches) setMenuOpen(false);
     };
@@ -68,72 +50,76 @@ export const Navbar: React.FC = () => {
     return () => mq.removeEventListener('change', onChange);
   }, []);
 
-  const linkClass = (id: string) =>
-    `rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-      activeId === id ? 'bg-tint text-accent' : 'text-body hover:bg-ink/5 hover:text-ink'
-    }`;
-
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 border-b bg-page transition-colors duration-200 ${
-        scrolled || menuOpen ? 'border-line' : 'border-transparent'
-      }`}
-    >
-      <nav aria-label="Primary" className="mx-auto flex h-16 w-full max-w-page items-center justify-between px-4 sm:px-6 lg:px-12">
-        <a href="#top" className="flex items-center gap-2.5 rounded-lg text-[17px] font-semibold tracking-tight text-ink">
-          <span aria-hidden="true" className="h-2 w-2 rounded-full bg-accent" />
+    <header className="sticky top-0 z-50 border-b border-line bg-nav backdrop-blur-[14px] backdrop-saturate-[1.4]">
+      <nav aria-label="Primary" className="container-page flex h-[68px] items-center justify-between gap-4">
+        <a
+          href="#top"
+          className="whitespace-nowrap text-[18px] font-semibold leading-none tracking-[-0.01em] text-ink no-underline"
+        >
           {SITE_NAME}
         </a>
 
-        <div className="flex items-center gap-1 sm:gap-2">
-        {/* Desktop links */}
-        <ul className="hidden items-center gap-1 md:flex">
-          {NAV_LINKS.map((link) => (
-            <li key={link.id}>
-              <a
-                href={`#${link.id}`}
-                aria-current={activeId === link.id ? 'location' : undefined}
-                className={`block ${linkClass(link.id)}`}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        {/* Desktop: pill of links, centred between the logo and the buttons */}
+          <ul className="m-0 hidden list-none items-center gap-0.5 rounded-full border border-line bg-surface p-1 text-[14px] min-[1000px]:flex">
+            {NAV_LINKS.map((link) => {
+              const current = activeId === link.id;
+              return (
+                <li key={link.id}>
+                  <a
+                    href={`#${link.id}`}
+                    aria-current={current ? 'true' : undefined}
+                    className={`block rounded-full px-3.5 py-2 no-underline transition-colors ${
+                      current ? 'bg-ink font-semibold text-page' : 'font-normal text-muted hover:text-ink'
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
 
-        <ThemeToggle />
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
 
-        {/* Mobile toggle */}
-        <button
-          ref={toggleRef}
-          type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-ink hover:bg-ink/5 sm:h-11 sm:w-11 sm:border sm:border-line md:hidden"
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          onClick={() => setMenuOpen((o) => !o)}
-        >
-          {menuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
-        </button>
+          {/* Mobile: menu button */}
+          <button
+            ref={toggleRef}
+            type="button"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            aria-label="Menu"
+            onClick={() => setMenuOpen((open) => !open)}
+            className="grid h-11 w-11 cursor-pointer place-items-center rounded-full border border-line bg-surface text-ink min-[1000px]:hidden"
+          >
+            {menuOpen ? <X className="h-[18px] w-[18px]" aria-hidden="true" /> : <Menu className="h-[18px] w-[18px]" aria-hidden="true" />}
+          </button>
         </div>
       </nav>
 
-      {/* Mobile panel */}
-      <div id="mobile-menu" hidden={!menuOpen} className="border-t border-line bg-page md:hidden">
-        <ul className="mx-auto flex max-w-page flex-col gap-1 px-4 py-3 sm:px-6 lg:px-12">
-          {NAV_LINKS.map((link) => (
-            <li key={link.id}>
-              <a
-                href={`#${link.id}`}
-                aria-current={activeId === link.id ? 'location' : undefined}
-                onClick={() => setMenuOpen(false)}
-                className={`block py-3 text-base ${linkClass(link.id)}`}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+      <div id="mobile-menu" className="min-[1000px]:hidden">
+        {menuOpen && (
+          <ul className="container-page m-0 flex list-none flex-col gap-1 border-t border-line pb-5 pt-3">
+            {NAV_LINKS.map((link) => {
+              const current = activeId === link.id;
+              return (
+                <li key={link.id}>
+                  <a
+                    href={`#${link.id}`}
+                    aria-current={current ? 'true' : undefined}
+                    onClick={() => setMenuOpen(false)}
+                    className={`block rounded-xl px-4 py-3.5 text-[18px] no-underline ${
+                      current ? 'bg-ink font-semibold text-page' : 'font-normal text-muted'
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
     </header>
   );

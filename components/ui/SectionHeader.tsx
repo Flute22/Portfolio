@@ -1,5 +1,6 @@
 import React from 'react';
 import { MonoLabel } from './MonoLabel';
+import { Reveal } from './Reveal';
 
 interface SectionHeaderProps {
   /** e.g. "01" */
@@ -9,20 +10,23 @@ interface SectionHeaderProps {
   title: string;
   /** id for the <h2>, used by the parent section's aria-labelledby */
   titleId: string;
-  /** Used inside Section's `aside`: no bottom margin on desktop, where it sits beside the content. */
-  split?: boolean;
+  /** Optional controls on the right (e.g. the project filter tabs) */
+  actions?: React.ReactNode;
 }
 
-export const SectionHeader: React.FC<SectionHeaderProps> = ({ index, label, title, titleId, split = false }) => (
-  <header className={`mb-4 md:mb-10 ${split ? 'lg:mb-0' : ''}`.trim()}>
-    <MonoLabel tone="accent">
-      {index} / {label}
-    </MonoLabel>
-    <h2
-      id={titleId}
-      className="mt-2 text-[1.625rem] font-semibold leading-[1.1] tracking-[-0.03em] sm:text-[2rem] md:mt-3 md:text-[2.5rem]"
-    >
-      {title}
-    </h2>
-  </header>
+export const SectionHeader: React.FC<SectionHeaderProps> = ({ index, label, title, titleId, actions }) => (
+  <Reveal className="mb-[clamp(24px,4vw,40px)] flex flex-wrap items-end justify-between gap-5">
+    <div className="flex flex-col gap-3">
+      <MonoLabel tone="accent">
+        {index} / {label}
+      </MonoLabel>
+      <h2
+        id={titleId}
+        className="m-0 text-balance text-[clamp(32px,4.4vw,52px)] font-semibold leading-[1.05] tracking-[-0.03em]"
+      >
+        {title}
+      </h2>
+    </div>
+    {actions}
+  </Reveal>
 );

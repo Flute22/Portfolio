@@ -1,4 +1,4 @@
-import React, { useState, lazy, Suspense } from 'react';
+import React from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -9,19 +9,12 @@ import { CaseStudies } from './components/CaseStudies';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 
-// The form is only needed when someone opens it, so keep it out of the main bundle.
-const ContactModal = lazy(() =>
-  import('./components/ContactModal').then((m) => ({ default: m.ContactModal })),
-);
-
 function App() {
-  const [isContactOpen, setIsContactOpen] = useState(false);
-
   return (
     <div className="min-h-screen bg-page">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-xl focus:bg-accent-solid focus:px-4 focus:py-2 focus:text-white"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-[100] focus:rounded-lg focus:bg-ink focus:px-3.5 focus:py-2.5 focus:text-page"
       >
         Skip to content
       </a>
@@ -35,14 +28,10 @@ function App() {
         <Projects />
         <Experience />
         <CaseStudies />
-        <Contact onOpenContact={() => setIsContactOpen(true)} />
+        <Contact />
       </main>
 
       <Footer />
-
-      <Suspense fallback={null}>
-        {isContactOpen && <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />}
-      </Suspense>
     </div>
   );
 }
