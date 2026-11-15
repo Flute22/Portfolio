@@ -44,6 +44,16 @@ export default {
       maxWidth: {
         page: "1320px",
       },
+      keyframes: {
+        "fade-down": {
+          from: { opacity: "0", transform: "translateY(-12px)" },
+          to: { opacity: "1", transform: "none" },
+        },
+      },
+      animation: {
+        "fade-down": "fade-down 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both",
+        "soft-ping": "ping 2.6s cubic-bezier(0, 0, 0.2, 1) infinite",
+      },
     },
   },
   plugins: [],

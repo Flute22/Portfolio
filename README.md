@@ -21,6 +21,13 @@ The first visit follows the visitor's OS setting (dark or light); the sun/moon b
 overrides it and the choice is remembered. A small script in `index.html` applies it before first paint.
 Colours live as CSS variables in `index.css` (`:root` for dark, `:root[data-theme='light']` for light).
 
+## Motion
+
+Small, performance-friendly effects: a scroll progress bar and a sliding highlight in the navbar, headline words
+that rise in, numbers that count up, chips that pop in one after another, a timeline that draws itself as you
+scroll, and a soft glow that follows the cursor over cards. Everything uses transforms/opacity, and all of it is
+switched off for visitors who set "reduce motion" in their OS (the page then simply shows the finished state).
+
 ## Contact form
 
 The form in the Contact section posts JSON to the URL in `VITE_FORM_ENDPOINT`.

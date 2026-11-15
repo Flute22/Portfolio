@@ -11,6 +11,8 @@ interface CardProps extends React.HTMLAttributes<HTMLElement> {
   radius?: 'xl' | 'lg';
   /** Lift 3px and strengthen the border on hover */
   lift?: boolean;
+  /** Soft glow that follows the pointer (tile cards on hover-capable devices) */
+  spotlight?: boolean;
   /** Fade up on scroll (default on) */
   reveal?: boolean;
   /** Stagger for the reveal, in ms */
@@ -30,26 +32,42 @@ export const Card: React.FC<CardProps> = ({
   tone = 'tile',
   radius = 'xl',
   lift = false,
+  spotlight = true,
   reveal: revealOn = true,
   delay = 0,
   className = '',
   style,
+  onPointerMove,
   children,
   ...rest
 }) => {
   const reveal = useReveal<HTMLElement>(delay, revealOn);
   const Element = Tag as React.ElementType;
   const rounded = radius === 'xl' ? 'rounded-3xl' : 'rounded-[20px]';
+  const glow = spotlight && tone === 'tile';
   const liftClasses =
     lift && reveal.settled
       ? 'transition-[transform,border-color] duration-[250ms] hover:-translate-y-[3px] hover:border-line2'
       : '';
 
+  const handlePointerMove = (e: React.PointerEvent<HTMLElement>) => {
+    if (glow) {
+      const el = e.currentTarget;
+      const box = el.getBoundingClientRect();
+      el.style.setProperty('--mx', `${e.clientX - box.left}px`);
+      el.style.setProperty('--my', `${e.clientY - box.top}px`);
+    }
+    onPointerMove?.(e);
+  };
+
   return (
     <Element
       ref={reveal.ref}
       style={{ ...reveal.style, ...style }}
-      className={`${rounded} ${TONES[tone]} ${reveal.className} ${liftClasses} ${className}`.replace(/\s+/g, ' ').trim()}
+      onPointerMove={glow ? handlePointerMove : onPointerMove}
+      className={`${rounded} ${TONES[tone]} ${glow ? 'spotlight' : ''} ${reveal.className} ${liftClasses} ${className}`
+        .replace(/\s+/g, ' ')
+        .trim()}
       {...rest}
     >
       {children}

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-const prefersReducedMotion = (): boolean =>
+export const prefersReducedMotion = (): boolean =>
   typeof window !== 'undefined' &&
   typeof window.matchMedia === 'function' &&
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -52,5 +52,5 @@ export function useReveal<T extends HTMLElement>(delay = 0, enabled = true) {
       }`;
   const style = !settled && delay ? { transitionDelay: `${delay}ms` } : undefined;
 
-  return { ref, className, style, settled };
+  return { ref, className, style, settled, shown };
 }
